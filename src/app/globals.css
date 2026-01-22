@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand Colors */
+  --color-primary: #00adef;
+  --color-dark: #0e1012;
+  --color-light: #f8f8f8;
+  --color-text-dark: #1a1a1a;
+  --color-text-light: #ffffff;
+
+  /* Background */
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--color-primary);
+  --color-dark: var(--color-dark);
+  --color-light: var(--color-light);
+  --font-sans: var(--font-dm-sans);
+  --font-serif: var(--font-libre-baskerville);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom selection color */
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-dark);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+/* Custom animations */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 15s linear infinite;
+}
