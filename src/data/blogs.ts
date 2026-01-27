@@ -8,10 +8,15 @@ export interface BlogPost {
     readTime: string;
     category: string;
     image: string;
+    // SEO fields (optional)
+    metaTitle?: string;
+    metaDescription?: string;
+    keywords?: string[];
+    canonicalUrl?: string;
 }
 
 export const defaultBlogs: BlogPost[] = [
-{
+    {
         title: "Build eCommerce Website From Scratch in 9 Easy Steps",
         slug: "build-ecommerce-website",
         excerpt: "A comprehensive guide to launching your first online store, from planning to deployment.",
@@ -22,7 +27,7 @@ export const defaultBlogs: BlogPost[] = [
         category: "Development",
         image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80",
     },
-{
+    {
         title: "eCommerce UX Audit Checklist: Finding and Fixing UX Issues",
         slug: "ecommerce-ux-audit",
         excerpt: "Learn how to identify and resolve user experience problems that hurt your conversion rate.",
@@ -33,7 +38,7 @@ export const defaultBlogs: BlogPost[] = [
         category: "UX Design",
         image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&q=80",
     },
-{
+    {
         title: "Shopify vs Magento: Which Platform Is Right for Your Business?",
         slug: "shopify-vs-magento",
         excerpt: "An in-depth comparison of the two leading eCommerce platforms to help you make the right choice.",
@@ -44,7 +49,7 @@ export const defaultBlogs: BlogPost[] = [
         category: "Platforms",
         image: "https://images.unsplash.com/photo-1556742111-a301076d9d18?w=600&q=80",
     },
-{
+    {
         title: "The Complete Guide to Headless Commerce",
         slug: "complete-guide-to-headless-commerce",
         excerpt: "Everything you need to know about modern headless architecture and composable commerce.",
@@ -55,7 +60,7 @@ export const defaultBlogs: BlogPost[] = [
         category: "Technology",
         image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80",
     },
-{
+    {
         title: "How to Improve Your Magento Store's Core Web Vitals",
         slug: "improve-magento-core-web-vitals",
         excerpt: "Practical tips to boost your Magento performance and improve your Google rankings.",
@@ -66,7 +71,7 @@ export const defaultBlogs: BlogPost[] = [
         category: "Performance",
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80",
     },
-{
+    {
         title: "Hyvä Theme: A Game Changer for Magento Performance",
         slug: "hyva-theme-magento-performance",
         excerpt: "Discover how Hyvä themes can dramatically improve your Magento 2 store's speed.",
@@ -77,7 +82,7 @@ export const defaultBlogs: BlogPost[] = [
         category: "Magento",
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80",
     },
-{
+    {
         "title": "E-commerce Growth Hacks That Actually Work",
         "slug": "ecommerce-growth-hacks",
         "excerpt": "Discover proven e-commerce growth hacks that drive traffic, boost conversions, and increase repeat sales—no fluff, just strategies that work.",
@@ -88,7 +93,7 @@ export const defaultBlogs: BlogPost[] = [
         "category": "Technology",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1zSRv3D2XGd-GBdY025Oy7yW9sI1jp_vkqA&s"
     },
-{
+    {
         "title": "Scaling Online Stores",
         "slug": "scaling-online-stores",
         "excerpt": "Learn proven strategies to scale your online store efficiently—boost traffic, improve conversions, and grow revenue without breaking operations.",
@@ -99,7 +104,7 @@ export const defaultBlogs: BlogPost[] = [
         "category": "Marketing",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROijDP-7kfXA9Zs-hJFypTS9HUPk_TPAEysQ&s"
     },
-{
+    {
         "title": "Proven Strategies for E-commerce Growth",
         "slug": "proven-strategies-for-e-commerce-growth",
         "excerpt": "A practical breakdown of proven e-commerce strategies designed to increase traffic, boost conversions, and scale revenue sustainably.",
@@ -110,15 +115,15 @@ export const defaultBlogs: BlogPost[] = [
         "category": "Marketing",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1zSRv3D2XGd-GBdY025Oy7yW9sI1jp_vkqA&s"
     },
-{
-    "title": "Kyeora: Redefining Artificial Jewellery Online",
-    "slug": "kyeora-redefining-artificial-jewellery-online",
-    "excerpt": "Discover beautifully crafted artificial jewellery at Kyeora, where contemporary design meets effortless styling for every occasion.",
-    "content": "### Discover Artificial Jewellery at Kyeora\nArtificial jewellery has become an essential part of modern fashion—offering elegance, versatility, and affordability. At Kyeora, we curate thoughtfully designed pieces that elevate everyday looks while staying effortless and wearable.\nExplore our carefully crafted jewellery categories, each designed to suit different styles, moods, and occasions.\n#### ✨ Bracelets\n![bracelete ](https://nemichandjewels.com/cdn/shop/files/850_6461.jpg?v=1696765004&width=1445)\nBracelets are the perfect finishing touch—subtle, stylish, and endlessly versatile.\n**At Kyeora, our bracelet collection features:**\n- Minimal everyday bracelets\n- Elegant gold-plated designs\n- Stackable styles for modern looks\n- Lightweight pieces for all-day comfort\n**Explore here:** /[bracelets](https://kyeora.com/collections/bracelets)\n**✨ Earrings**\n![earring](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbgLFBIRBxBA_YHPWfXusy8SpYvstotC9qCQ&s)\nFrom everyday elegance to bold statements, earrings define personal style.\n**Our earring collection includes:**\n- Studs for daily wear\n- Hoops for casual chic looks\n- Statement earrings for festive occasions\n- Lightweight designs that balance comfort and glamour\n**Explore here:** /[Earring](https://kyeora.com/collections/earrings)",
-    "author": "Innodify Admin",
-    "date": "Jan 23, 2026",
-    "readTime": "7 min read",
-    "category": "Marketing",
-    "image": "https://kyeora.com/cdn/shop/files/1_1efc1ca4-63d5-4fc5-a9ef-aab0fa33a689.png?v=1761110823&width=2000"
-},
+    {
+        "title": "Kyeora: Redefining Artificial Jewellery Online",
+        "slug": "kyeora-redefining-artificial-jewellery-online",
+        "excerpt": "Discover beautifully crafted artificial jewellery at Kyeora, where contemporary design meets effortless styling for every occasion.",
+        "content": "### Discover Artificial Jewellery at Kyeora\nArtificial jewellery has become an essential part of modern fashion—offering elegance, versatility, and affordability. At Kyeora, we curate thoughtfully designed pieces that elevate everyday looks while staying effortless and wearable.\nExplore our carefully crafted jewellery categories, each designed to suit different styles, moods, and occasions.\n#### ✨ Bracelets\n![bracelete ](https://nemichandjewels.com/cdn/shop/files/850_6461.jpg?v=1696765004&width=1445)\nBracelets are the perfect finishing touch—subtle, stylish, and endlessly versatile.\n**At Kyeora, our bracelet collection features:**\n- Minimal everyday bracelets\n- Elegant gold-plated designs\n- Stackable styles for modern looks\n- Lightweight pieces for all-day comfort\n**Explore here:** /[bracelets](https://kyeora.com/collections/bracelets)\n**✨ Earrings**\n![earring](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbgLFBIRBxBA_YHPWfXusy8SpYvstotC9qCQ&s)\nFrom everyday elegance to bold statements, earrings define personal style.\n**Our earring collection includes:**\n- Studs for daily wear\n- Hoops for casual chic looks\n- Statement earrings for festive occasions\n- Lightweight designs that balance comfort and glamour\n**Explore here:** /[Earring](https://kyeora.com/collections/earrings)",
+        "author": "Innodify Admin",
+        "date": "Jan 23, 2026",
+        "readTime": "7 min read",
+        "category": "Marketing",
+        "image": "https://kyeora.com/cdn/shop/files/1_1efc1ca4-63d5-4fc5-a9ef-aab0fa33a689.png?v=1761110823&width=2000"
+    },
 ];

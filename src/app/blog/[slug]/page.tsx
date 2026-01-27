@@ -5,6 +5,8 @@ import { ArrowLeft, Calendar, Clock, User, Share2, Facebook, Twitter, Linkedin }
 import Link from "next/link";
 import { notFound, useParams } from "next/navigation";
 import { defaultBlogs } from "@/data/blogs";
+import BlogContentRenderer from "@/components/BlogContentRenderer";
+import Head from "next/head";
 
 export default function BlogPostPage() {
     const params = useParams();
@@ -29,38 +31,7 @@ export default function BlogPostPage() {
         })
         .slice(0, 3);
 
-    const renderText = (text: string) => {
-        const parts = text.split(/(\*\*.*?\*\*|\[.*?\]\(.*?\))/g);
-        return parts.map((part, i) => {
-            if (part.startsWith("**") && part.endsWith("**")) {
-                return (
-                    <strong key={i} className="text-white font-semibold">
-                        {part.slice(2, -2)}
-                    </strong>
-                );
-            }
-            if (part.startsWith("[") && part.includes("](")) {
-                const match = part.match(/\[(.*?)\]\((.*?)\)/);
-                if (match) {
-                    const label = match[1];
-                    const url = match[2];
-                    const isExternal = url.startsWith("http");
-                    return (
-                        <Link
-                            key={i}
-                            href={url}
-                            target={isExternal ? "_blank" : undefined}
-                            rel={isExternal ? "noopener noreferrer" : undefined}
-                            className="text-[#00adef] hover:underline transition-all"
-                        >
-                            {label}
-                        </Link>
-                    );
-                }
-            }
-            return part;
-        });
-    };
+
 
     return (
         <section className="relative min-h-screen bg-[#0e1012] py-24 overflow-hidden">
@@ -130,54 +101,7 @@ export default function BlogPostPage() {
                     </div>
 
                     {/* Content */}
-                    <div className="prose prose-invert prose-lg max-w-none">
-                        <div className="text-[#d1d5db] leading-relaxed font-sans space-y-4">
-                            {post.content.split('\n').map((line, i) => {
-                                if (line.startsWith('### ')) {
-                                    return <h3 key={i} className="text-2xl font-serif text-white mt-8 mb-4">{line.replace('### ', '')}</h3>;
-                                }
-                                if (line.startsWith('#### ')) {
-                                    return <h4 key={i} className="text-xl font-serif text-white mt-6 mb-3">{line.replace('#### ', '')}</h4>;
-                                }
-                                if (line.startsWith('- ')) {
-                                    return (
-                                        <div key={i} className="flex gap-3 ml-4">
-                                            <span className="text-[#00adef]">•</span>
-                                            <p>{renderText(line.replace('- ', ''))}</p>
-                                        </div>
-                                    );
-                                }
-                                if (line.startsWith('![')) {
-                                    const match = line.match(/!\[(.*?)\]\((.*?)\)/);
-                                    if (match) {
-                                        const alt = match[1];
-                                        const src = match[2];
-                                        return (
-                                            <div key={i} className="my-8 space-y-2 flex flex-col items-center">
-                                                <img
-                                                    src={src}
-                                                    alt={alt}
-                                                    className="w-[700px] h-[400px] object-cover rounded-xl border border-[#2a2f36] shadow-2xl"
-                                                />
-                                                {alt && (
-                                                    <p className="text-center text-sm text-[#6b7280] italic max-w-[400px]">
-                                                        {alt}
-                                                    </p>
-                                                )}
-                                            </div>
-                                        );
-                                    }
-                                }
-
-                                if (line.trim() === '') {
-                                    return <div key={i} className="h-2" />;
-                                }
-
-                                // Basic bold and link handling for regular paragraphs
-                                return <p key={i}>{renderText(line)}</p>;
-                            })}
-                        </div>
-                    </div>
+                    <BlogContentRenderer content={post.content} />
 
                     {/* Social Share */}
                     <div className="mt-16 pt-12 border-t border-[#2a2f36] flex flex-col md:flex-row md:items-center justify-between gap-8">
