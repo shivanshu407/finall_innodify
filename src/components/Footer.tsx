@@ -136,7 +136,11 @@ export function Footer() {
                                     <MapPin className="w-5 h-5 text-[#00adef]" />
                                 </div>
                                 <div>
-                                    <p className="text-sm text-gray-400">123 Commerce Street, New York, NY 10001</p>
+                                    <p className="text-sm text-gray-400">
+                                        6th Floor, 602 Sundram Plus,<br />
+                                        Timaliyawad, Athugar St, Kharwawad,<br />
+                                        Nanpura, Surat, Gujarat 395001
+                                    </p>
                                 </div>
                             </li>
                             <li className="flex items-start gap-4">
@@ -144,8 +148,9 @@ export function Footer() {
                                     <Phone className="w-5 h-5 text-[#00adef]" />
                                 </div>
                                 <div>
-                                    <p className="text-sm text-gray-400">+1 (234) 567-890</p>
-                                    <p className="text-xs text-gray-500 mt-0.5">Mon-Fri, 9am - 6pm EST</p>
+                                    <p className="text-sm text-gray-400">+91 79843 71199</p>
+                                    <p className="text-sm text-gray-400">+91 91042 41907</p>
+                                    <p className="text-xs text-gray-500 mt-0.5">Mon-Sat, 10am - 7pm IST</p>
                                 </div>
                             </li>
                             <li className="flex items-start gap-4">
@@ -153,8 +158,8 @@ export function Footer() {
                                     <Mail className="w-5 h-5 text-[#00adef]" />
                                 </div>
                                 <div>
-                                    <a href="mailto:hello@innodify.com" className="text-sm text-gray-400 hover:text-[#00adef] transition-colors">
-                                        hello@innodify.com
+                                    <a href="mailto:support@innodify.co.in" className="text-sm text-gray-400 hover:text-[#00adef] transition-colors">
+                                        support@innodify.co.in
                                     </a>
                                 </div>
                             </li>

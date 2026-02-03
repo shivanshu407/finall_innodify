@@ -79,8 +79,8 @@ function ContactFormSection() {
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-[#0e1012]">Email Us</h3>
-                                    <a href="mailto:hello@innodify.com" className="text-gray-600 hover:text-[#00adef] transition-colors">
-                                        hello@innodify.com
+                                    <a href="mailto:support@innodify.co.in" className="text-gray-600 hover:text-[#00adef] transition-colors">
+                                        support@innodify.co.in
                                     </a>
                                 </div>
                             </div>
@@ -91,8 +91,11 @@ function ContactFormSection() {
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-[#0e1012]">Call Us</h3>
-                                    <a href="tel:+1234567890" className="text-gray-600 hover:text-[#00adef] transition-colors">
-                                        +1 (234) 567-890
+                                    <a href="tel:+917984371199" className="text-gray-600 hover:text-[#00adef] transition-colors block">
+                                        +91 79843 71199
+                                    </a>
+                                    <a href="tel:+919104241907" className="text-gray-600 hover:text-[#00adef] transition-colors block">
+                                        +91 91042 41907
                                     </a>
                                 </div>
                             </div>
@@ -104,8 +107,9 @@ function ContactFormSection() {
                                 <div>
                                     <h3 className="font-semibold text-[#0e1012]">Visit Us</h3>
                                     <p className="text-gray-600">
-                                        123 Commerce Street<br />
-                                        New York, NY 10001
+                                        6th Floor, 602 Sundram Plus,<br />
+                                        Timaliyawad, Athugar St, Kharwawad,<br />
+                                        Nanpura, Surat, Gujarat 395001
                                     </p>
                                 </div>
                             </div>
@@ -117,7 +121,7 @@ function ContactFormSection() {
                                 <div>
                                     <h3 className="font-semibold text-[#0e1012]">Business Hours</h3>
                                     <p className="text-gray-600">
-                                        Monday - Friday: 9:00 AM - 6:00 PM EST
+                                        Monday - Saturday: 10:00 AM - 7:00 PM IST
                                     </p>
                                 </div>
                             </div>
@@ -217,11 +221,12 @@ function ContactFormSection() {
                                         className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-[#00adef] focus:ring-2 focus:ring-[#00adef]/20 outline-none transition-all bg-white"
                                     >
                                         <option value="">Select a service</option>
-                                        <option value="shopify">Shopify Development</option>
-                                        <option value="magento">Magento Development</option>
-                                        <option value="headless">Headless Commerce</option>
-                                        <option value="migration">Platform Migration</option>
-                                        <option value="optimization">Performance Optimization</option>
+                                        <option value="web-development">Web Development</option>
+                                        <option value="mobile-apps">Mobile Apps</option>
+                                        <option value="saas-products">SaaS Products</option>
+                                        <option value="ai-solutions">AI Solutions</option>
+                                        <option value="ecommerce">eCommerce</option>
+                                        <option value="crm-development">CRM Development</option>
                                         <option value="other">Other</option>
                                     </select>
                                 </div>

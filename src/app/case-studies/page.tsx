@@ -32,6 +32,17 @@ function CaseStudiesHero() {
 function CaseStudiesGrid() {
     const caseStudies = [
         {
+            title: "Shopify eCommerce Store for Premium Jewellery Brand",
+            client: "D Khushalbhai Jewellers",
+            clientColor: "#D4AF37",
+            tags: ["Shopify", "eCommerce", "Payment Integration"],
+            stat: "100%",
+            statLabel: "Digital Presence",
+            description: "Complete Shopify store development with payment gateway and delivery partner integrations for a premium gold, diamond, and silver jewellery retailer.",
+            image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80",
+            link: "/case-studies/dkhushalbhai-jewellers"
+        },
+        {
             title: "Cloud-Based Transformation of Real Estate Operations",
             client: "Mahalaxmi Group",
             clientColor: "#00adef",
@@ -41,56 +52,6 @@ function CaseStudiesGrid() {
             description: "How we helped Mahalaxmi Real Estate Group achieve 100% data security and boost productivity by 30% with a custom cloud-native CRM.",
             image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
             link: "/case-studies/mahalaxmi-real-estate"
-        },
-        {
-            title: "Top Jordanian Cellular Network Provider Umniah Increases Site Speed by 224%",
-            client: "Umniah",
-            clientColor: "#7C3AED",
-            tags: ["B2C", "Magento", "Performance"],
-            stat: "224%",
-            statLabel: "Speed Increase",
-            description: "Performance optimization that transformed mobile shopping experience for millions of users.",
-            image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80",
-        },
-        {
-            title: "Pure Daily Care Case Study: Headless Commerce for Beauty & Cosmetics",
-            client: "Pure Daily Care",
-            clientColor: "#4A90A4",
-            tags: ["B2C", "Headless", "Shopify"],
-            stat: "45%",
-            statLabel: "Conversion Increase",
-            description: "Building a lightning-fast headless storefront for a fast-growing beauty brand.",
-            image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&q=80",
-        },
-        {
-            title: "Enterprise B2B Portal for Industrial Equipment",
-            client: "TechEquip",
-            clientColor: "#059669",
-            tags: ["B2B", "Magento"],
-            stat: "50K+",
-            statLabel: "SKUs Managed",
-            description: "Custom B2B portal with complex pricing rules, quote management, and ERP integration.",
-            image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80",
-        },
-        {
-            title: "Fashion Brand Migration from Magento 1 to Shopify Plus",
-            client: "StyleHouse",
-            clientColor: "#EC4899",
-            tags: ["Migration", "Shopify Plus"],
-            stat: "0",
-            statLabel: "Downtime",
-            description: "Seamless platform migration preserving SEO rankings and customer data integrity.",
-            image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
-        },
-        {
-            title: "Hyvä Theme Implementation for Multi-Brand Retailer",
-            client: "RetailGroup",
-            clientColor: "#F59E0B",
-            tags: ["Magento", "Hyvä", "Performance"],
-            stat: "3x",
-            statLabel: "Faster Load Time",
-            description: "Migrating a complex multi-brand Magento store to Hyvä for dramatic performance gains.",
-            image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=600&q=80",
         },
     ];
 
