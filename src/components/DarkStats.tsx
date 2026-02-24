@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { Trophy } from "lucide-react";
 
 const stats = [
-    { label: "Years Experience", value: "10", suffix: "+" },
-    { label: "Projects Delivered", value: "200", suffix: "+" },
+    { label: "Years Experience", value: "3", suffix: "+" },
+    { label: "Projects Delivered", value: "40", suffix: "+" },
     { label: "Industries Served", value: "8", suffix: "+" },
-    { label: "AI Solutions Built", value: "30", suffix: "+" },
+    { label: "AI Solutions Built", value: "10", suffix: "+" },
 ];
 
 export function DarkStats() {
