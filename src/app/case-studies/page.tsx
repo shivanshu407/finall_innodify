@@ -83,7 +83,7 @@ function CaseStudiesGrid() {
             stat: "0%",
             statLabel: "Commission",
             description: "A highly optimized, native-performance ride hailing platform for cabs and bikes using custom Native Modules.",
-            image: "https://images.unsplash.com/photo-1549313861-3365b9d316e6?w=800&q=80",
+            image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80",
             link: "/case-studies/ustart"
         },
         {
@@ -94,7 +94,7 @@ function CaseStudiesGrid() {
             stat: "100%",
             statLabel: "Uptime Under Load",
             description: "A massive-scale university assessment portal with impenetrable browser security and Kubernetes-driven microservices.",
-            image: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=800&q=80",
+            image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80",
             link: "/case-studies/unisphere-exam-portal"
         },
         {
@@ -105,7 +105,7 @@ function CaseStudiesGrid() {
             stat: "5k+",
             statLabel: "Daily Users",
             description: "An all-in-one mobile app to digitalize campus operations including gatepasses, shuttles, and cafeteria bookings.",
-            image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80",
+            image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80",
             link: "/case-studies/unisphere-app"
         },
     ];

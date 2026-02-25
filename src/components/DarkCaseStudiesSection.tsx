@@ -42,7 +42,7 @@ const caseStudies = [
         id: "ustart-app",
         title: "Ustart: Zero-Commission Ride Hailing",
         category: "React Native",
-        image: "https://images.unsplash.com/photo-1549313861-3365b9d316e6?w=800&q=80",
+        image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80",
         stats: "Native Performance",
         link: "/case-studies/ustart"
     },
@@ -50,7 +50,7 @@ const caseStudies = [
         id: "unisphere-exam",
         title: "Unisphere: Highly Secure Exam Portal",
         category: "Cloud Infra",
-        image: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=800&q=80",
+        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80",
         stats: "Kubernetes (EKS)",
         link: "/case-studies/unisphere-exam-portal"
     },
@@ -58,7 +58,7 @@ const caseStudies = [
         id: "unisphere-app",
         title: "Unisphere: University Management System",
         category: "Mobile App",
-        image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80",
+        image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80",
         stats: "5000+ Daily Users",
         link: "/case-studies/unisphere-app"
     }

@@ -9,7 +9,7 @@ export default function UnisphereExamCaseStudy() {
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
             <section className="bg-[#0e1012] pt-32 pb-20 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=1600&q=80')] bg-cover bg-center opacity-20" />
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600&q=80')] bg-cover bg-center opacity-20" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0e1012] via-[#0e1012]/80 to-transparent" />
 
                 <div className="container mx-auto px-6 relative z-10">
