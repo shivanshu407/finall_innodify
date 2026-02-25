@@ -7,6 +7,38 @@ import Link from "next/link";
 
 const caseStudies = [
     {
+        id: "salt-glitz-app",
+        title: "Custom Flutter App for CVD Diamond Jewellery",
+        category: "Flutter App",
+        image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80",
+        stats: "2 App Stores",
+        link: "/case-studies/salt-and-glitz-app"
+    },
+    {
+        id: "salt-glitz-website",
+        title: "Custom eCommerce Website for CVD Diamond Jewellery",
+        category: "eCommerce",
+        image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80",
+        stats: "100% Custom",
+        link: "/case-studies/salt-and-glitz-website"
+    },
+    {
+        id: "dkhushalbhai",
+        title: "Shopify Store for Premium Jewellery Brand",
+        category: "Shopify",
+        image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80",
+        stats: "Full eCommerce",
+        link: "/case-studies/dkhushalbhai-jewellers"
+    },
+    {
+        id: "mahalaxmi",
+        title: "Cloud-Based Transformation of Real Estate Operations",
+        category: "Cloud CRM",
+        image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
+        stats: "100% Security",
+        link: "/case-studies/mahalaxmi-real-estate"
+    },
+    {
         id: "ustart-app",
         title: "Ustart: Zero-Commission Ride Hailing",
         category: "React Native",

@@ -32,6 +32,50 @@ function CaseStudiesHero() {
 function CaseStudiesGrid() {
     const caseStudies = [
         {
+            title: "Custom Flutter App for CVD Diamond Jewellery Brand",
+            client: "Salt & Glitz",
+            clientColor: "#E91E63",
+            tags: ["Flutter", "iOS", "Android"],
+            stat: "2",
+            statLabel: "App Stores",
+            description: "Custom Flutter mobile app published on both App Store and Play Store for a premium CVD diamond jewellery brand.",
+            image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80",
+            link: "/case-studies/salt-and-glitz-app"
+        },
+        {
+            title: "Custom eCommerce Website for CVD Diamond Jewellery",
+            client: "Salt & Glitz",
+            clientColor: "#E91E63",
+            tags: ["eCommerce", "Custom Website", "Web Development"],
+            stat: "100%",
+            statLabel: "Custom Built",
+            description: "Fully custom eCommerce website for Salt & Glitz to showcase and sell their premium CVD lab-grown diamond jewellery collection.",
+            image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80",
+            link: "/case-studies/salt-and-glitz-website"
+        },
+        {
+            title: "Shopify eCommerce Store for Premium Jewellery Brand",
+            client: "D Khushalbhai Jewellers",
+            clientColor: "#D4AF37",
+            tags: ["Shopify", "eCommerce", "Payment Integration"],
+            stat: "100%",
+            statLabel: "Digital Presence",
+            description: "Complete Shopify store development with payment gateway and delivery partner integrations for a premium gold, diamond, and silver jewellery retailer.",
+            image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80",
+            link: "/case-studies/dkhushalbhai-jewellers"
+        },
+        {
+            title: "Cloud-Based Transformation of Real Estate Operations",
+            client: "Mahalaxmi Group",
+            clientColor: "#00adef",
+            tags: ["Cloud CRM", "Web App"],
+            stat: "30%",
+            statLabel: "Productivity",
+            description: "How we helped Mahalaxmi Real Estate Group achieve 100% data security and boost productivity by 30% with a custom cloud-native CRM.",
+            image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
+            link: "/case-studies/mahalaxmi-real-estate"
+        },
+        {
             title: "Ustart: Zero-Commission Cab & Bike App",
             client: "Ustart",
             clientColor: "#00adef",
