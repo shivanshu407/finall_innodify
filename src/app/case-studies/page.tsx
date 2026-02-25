@@ -32,37 +32,37 @@ function CaseStudiesHero() {
 function CaseStudiesGrid() {
     const caseStudies = [
         {
-            title: "Custom Flutter App for CVD Diamond Jewellery Brand",
-            client: "Salt & Glitz",
-            clientColor: "#E91E63",
-            tags: ["Flutter", "iOS", "Android"],
-            stat: "2",
-            statLabel: "App Stores",
-            description: "Custom Flutter mobile app published on both App Store and Play Store for a premium CVD diamond jewellery brand.",
-            image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80",
-            link: "/case-studies/salt-and-glitz-app"
+            title: "Ustart: Zero-Commission Cab & Bike App",
+            client: "Ustart",
+            clientColor: "#00adef",
+            tags: ["React Native", "Expo", "Native Modules"],
+            stat: "0%",
+            statLabel: "Commission",
+            description: "A highly optimized, native-performance ride hailing platform for cabs and bikes using custom Native Modules.",
+            image: "https://images.unsplash.com/photo-1549313861-3365b9d316e6?w=800&q=80",
+            link: "/case-studies/ustart"
         },
         {
-            title: "Custom eCommerce Website for CVD Diamond Jewellery",
-            client: "Salt & Glitz",
-            clientColor: "#E91E63",
-            tags: ["eCommerce", "Custom Website", "Web Development"],
+            title: "Unisphere: Highly Secure Exam Portal",
+            client: "BML Munjal University",
+            clientColor: "#00adef",
+            tags: ["EKS", "Node.js", "SafeExamBrowser"],
             stat: "100%",
-            statLabel: "Custom Built",
-            description: "Fully custom eCommerce website for Salt & Glitz to showcase and sell their premium CVD lab-grown diamond jewellery collection.",
-            image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80",
-            link: "/case-studies/salt-and-glitz-website"
+            statLabel: "Uptime Under Load",
+            description: "A massive-scale university assessment portal with impenetrable browser security and Kubernetes-driven microservices.",
+            image: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=800&q=80",
+            link: "/case-studies/unisphere-exam-portal"
         },
         {
-            title: "Shopify eCommerce Store for Premium Jewellery Brand",
-            client: "D Khushalbhai Jewellers",
-            clientColor: "#D4AF37",
-            tags: ["Shopify", "eCommerce", "Payment Integration"],
-            stat: "100%",
-            statLabel: "Digital Presence",
-            description: "Complete Shopify store development with payment gateway and delivery partner integrations for a premium gold, diamond, and silver jewellery retailer.",
-            image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80",
-            link: "/case-studies/dkhushalbhai-jewellers"
+            title: "Unisphere: Full College Management System",
+            client: "BML Munjal University",
+            clientColor: "#00adef",
+            tags: ["React Native", "Mobile App", "Node.js"],
+            stat: "5k+",
+            statLabel: "Daily Users",
+            description: "An all-in-one mobile app to digitalize campus operations including gatepasses, shuttles, and cafeteria bookings.",
+            image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80",
+            link: "/case-studies/unisphere-app"
         },
         {
             title: "Cloud-Based Transformation of Real Estate Operations",
