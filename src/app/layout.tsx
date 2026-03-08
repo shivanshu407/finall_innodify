@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans, Libre_Baskerville } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { OrganizationJsonLd } from "@/components/JsonLd";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -17,8 +18,57 @@ const libreBaskerville = Libre_Baskerville({
 });
 
 export const metadata: Metadata = {
-  title: "Innodify | Digital Solutions Agency",
-  description: "AI, CRM, SaaS, Web & Mobile Solutions - Your Partner for Digital Transformation",
+  metadataBase: new URL("https://innodify.in"),
+  title: {
+    default: "Innodify | AI, Web & Mobile Development Agency in Surat",
+    template: "%s | Innodify",
+  },
+  description:
+    "Innodify is a digital solutions agency in Surat, India. We build AI solutions, CRM systems, SaaS products, web & mobile apps, and eCommerce stores.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    siteName: "Innodify",
+    title: "Innodify | AI, Web & Mobile Development Agency in Surat",
+    description:
+      "Innodify is a digital solutions agency in Surat, India. We build AI solutions, CRM systems, SaaS products, web & mobile apps, and eCommerce stores.",
+    url: "https://innodify.in",
+    images: [
+      {
+        url: "/innodify-logo.svg",
+        width: 512,
+        height: 512,
+        alt: "Innodify Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Innodify | AI, Web & Mobile Development Agency in Surat",
+    description:
+      "AI, CRM, SaaS, Web & Mobile Solutions — Your Partner for Digital Transformation",
+    images: ["/innodify-logo.svg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({
@@ -31,6 +81,7 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${libreBaskerville.variable} font-sans antialiased`}
       >
+        <OrganizationJsonLd />
         <div className="bg-[#0e1012] min-h-screen flex flex-col">
           <Header />
           <main className="flex-grow">
@@ -42,5 +93,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-

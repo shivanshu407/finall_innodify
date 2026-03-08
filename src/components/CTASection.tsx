@@ -49,7 +49,7 @@ export function CTASection() {
                         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
                             <Link
                                 href="/contact-us"
-                                className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-white transition-all duration-300 relative overflow-hidden"
+                                className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-white transition-all duration-300 relative overflow-hidden max-lg:w-full"
                                 style={{
                                     background: 'linear-gradient(135deg, #00adef 0%, #00d4ff 50%, #00adef 100%)',
                                 }}
@@ -66,7 +66,7 @@ export function CTASection() {
 
                             <Link
                                 href="/case-studies"
-                                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-[#0e1012] border-2 border-[#0e1012] hover:bg-[#0e1012] hover:text-white transition-all duration-300"
+                                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-[#0e1012] border-2 border-[#0e1012] hover:bg-[#0e1012] hover:text-white transition-all duration-300 max-lg:w-full"
                             >
                                 View Our Work
                             </Link>

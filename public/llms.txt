@@ -1,0 +1,31 @@
+# Innodify — Digital Solutions Agency
+
+> Innodify is a digital solutions agency based in Surat, Gujarat, India. We specialize in AI solutions, CRM development, SaaS products, web development, eCommerce, and mobile app development.
+
+## Company Information
+- **Name:** Innodify
+- **Website:** https://innodify.in
+- **Location:** 6th Floor, 602 Sundram Plus, Timaliyawad, Athugar St, Nanpura, Surat, Gujarat 395001, India
+- **Phone:** +91 79843 71199
+- **Email:** support@innodify.co.in
+- **Founded:** Surat, India
+
+## Services
+- AI Solutions: Agentic AI, AI chatbots, custom AI models, process automation, predictive analytics
+- CRM Development: Custom CRM solutions for sales, marketing, and customer management
+- SaaS Products: End-to-end SaaS product development and scaling
+- Web Development: Full-stack web application development
+- eCommerce: Shopify, Magento, headless commerce, custom eCommerce solutions
+- Mobile Apps: iOS and Android mobile application development
+
+## Industries Served
+Healthcare, Fintech, eCommerce, Education, Real Estate, Logistics, Sports & Gaming, Media & Entertainment
+
+## Key Pages
+- Homepage: https://innodify.in/
+- About Us: https://innodify.in/about-us
+- Services: https://innodify.in/services/ai-solutions, https://innodify.in/services/crm-development, https://innodify.in/services/saas-products, https://innodify.in/services/web-development, https://innodify.in/services/ecommerce, https://innodify.in/services/mobile-apps
+- Case Studies: https://innodify.in/case-studies
+- Blog: https://innodify.in/blog
+- Contact: https://innodify.in/contact-us
+- Careers: https://innodify.in/career-at-innodify

@@ -1,0 +1,353 @@
+# SEO Audit Report — innodify.in
+
+**Date:** March 6, 2026  
+**Industry:** Digital Agency  
+**Stack:** Next.js on Hostinger (hCDN, Brotli compression)
+
+---
+
+## SEO Health Score: 38/100 🔴
+
+| Category | Weight | Score | Status |
+|----------|--------|-------|--------|
+| Technical SEO | 25% | 30/100 | 🔴 Critical |
+| Content Quality | 25% | 55/100 | 🟡 Moderate |
+| On-Page SEO | 20% | 40/100 | 🟡 Needs Work |
+| Schema / Structured Data | 10% | 0/100 | 🔴 Missing |
+| Performance (CWV) | 10% | 60/100 | 🟡 Estimated |
+| Images | 5% | 70/100 | 🟢 Good |
+| AI Search Readiness | 5% | 15/100 | 🔴 Critical |
+
+---
+
+## Desktop View
+![Desktop Homepage](C:\Users\SHIVANSHU\.gemini\antigravity\brain\13c6d967-fdba-406e-9c25-dda1c643a1e2\homepage_above_fold_1772794196917.png)
+
+## Mobile View
+![Mobile Homepage](C:\Users\SHIVANSHU\.gemini\antigravity\brain\13c6d967-fdba-406e-9c25-dda1c643a1e2\mobile_view_homepage_1772794368856.png)
+
+---
+
+## 🔴 Critical Issues (Fix Immediately)
+
+### 1. No robots.txt — Returns 404
+- **Impact:** Search engines have no crawl directives; may crawl unnecessary pages or miss important ones
+- **Fix:** Create `/public/robots.txt`:
+```
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+
+Sitemap: https://innodify.in/sitemap.xml
+```
+
+### 2. No sitemap.xml — Returns 404
+- **Impact:** Google cannot efficiently discover all your pages. Critical for a multi-page site with services, industries, case studies, and blog posts
+- **Fix:** Install `next-sitemap` package:
+```bash
+npm install next-sitemap
+```
+Create `next-sitemap.config.js`:
+```js
+module.exports = {
+  siteUrl: 'https://innodify.in',
+  generateRobotsTxt: true,
+  changefreq: 'weekly',
+  priority: 0.7,
+}
+```
+
+### 3. No Schema/JSON-LD Structured Data
+- **Impact:** Missing Rich Results in Google Search entirely. No Organization, LocalBusiness, WebSite, BreadcrumbList, or Service schema detected
+- **Fix:** Add JSON-LD to the homepage `<head>`:
+```json
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://innodify.in/#organization",
+      "name": "Innodify",
+      "url": "https://innodify.in",
+      "logo": "https://innodify.in/logo.png",
+      "sameAs": [],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "6th Floor, 602 Sundram Plus, Timaliyawad, Athugar St",
+        "addressLocality": "Surat",
+        "addressRegion": "Gujarat",
+        "postalCode": "395001",
+        "addressCountry": "IN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-79843-71199",
+        "contactType": "sales",
+        "availableLanguage": ["English", "Hindi"]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://innodify.in/#website",
+      "url": "https://innodify.in",
+      "name": "Innodify",
+      "publisher": { "@id": "https://innodify.in/#organization" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://innodify.in/#webpage",
+      "url": "https://innodify.in",
+      "name": "Innodify | Digital Solutions Agency",
+      "isPartOf": { "@id": "https://innodify.in/#website" },
+      "about": { "@id": "https://innodify.in/#organization" }
+    }
+  ]
+}
+```
+
+### 4. No Canonical Tags
+- **Impact:** Potential duplicate content issues (http/https, www/non-www, trailing slashes)
+- **Fix:** Add to every page's `<head>`:
+```html
+<link rel="canonical" href="https://innodify.in/[current-page-path]" />
+```
+In Next.js, use the `metadata` export or `next/head`.
+
+### 5. No Open Graph / Twitter Card Meta Tags
+- **Impact:** When shared on LinkedIn, Twitter, WhatsApp — no branded preview image, title, or description appears. Critical for an agency that relies on social proof
+- **Fix:** Add to each page:
+```html
+<meta property="og:title" content="Innodify | Digital Solutions Agency" />
+<meta property="og:description" content="AI, CRM, SaaS, Web & Mobile Solutions" />
+<meta property="og:image" content="https://innodify.in/og-image.jpg" />
+<meta property="og:url" content="https://innodify.in/" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Innodify | Digital Solutions Agency" />
+<meta name="twitter:description" content="AI, CRM, SaaS, Web & Mobile Solutions" />
+<meta name="twitter:image" content="https://innodify.in/og-image.jpg" />
+```
+
+### 6. Security Headers — 6 of 7 Missing
+
+| Header | Status |
+|--------|--------|
+| Strict-Transport-Security (HSTS) | ❌ MISSING |
+| Content-Security-Policy | ✅ `upgrade-insecure-requests` (partial) |
+| X-Frame-Options | ❌ MISSING |
+| X-Content-Type-Options | ❌ MISSING |
+| X-XSS-Protection | ❌ MISSING |
+| Referrer-Policy | ❌ MISSING |
+| Permissions-Policy | ❌ MISSING |
+
+- **Impact:** Security is a Trust signal for E-E-A-T. Missing HSTS allows downgrade attacks. Google uses HTTPS as a ranking factor
+- **Fix:** Add headers in `next.config.js`:
+```js
+async headers() {
+  return [{
+    source: '/(.*)',
+    headers: [
+      { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
+      { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+      { key: 'X-Content-Type-Options', value: 'nosniff' },
+      { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+      { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+    ],
+  }];
+}
+```
+
+---
+
+## 🟠 High Priority (Fix Within 1 Week)
+
+### 7. Duplicate Page Title — "Innodify | Digital Solutions Agency"
+- **Finding:** Homepage and About page both have the same `<title>` tag
+- **Impact:** Google may struggle to differentiate pages; reduces CTR from SERPs
+- **Fix:** Each page needs a unique, descriptive title (30-60 characters):
+  - Homepage: `Innodify | AI, Web & Mobile Development Agency in Surat`
+  - About: `About Innodify | Meet Our Team & Our Story`
+  - Services: `Our Services | Web, Mobile, AI & eCommerce Solutions`
+
+### 8. Thin Content on About Page
+- **Finding:** About page has ~200 words of unique content (below 400 word minimum)
+- **Missing:** Co-founder bios have no credentials, qualifications, or background
+- **Impact:** Weak E-E-A-T signals — Google needs to see expertise and experience
+- **Fix:**
+  - Add detailed founder bios (50-100 words each with credentials)
+  - Add company history, founding story, mission statement detail
+  - Include verifiable metrics ("delivered 100+ projects" with specifics)
+
+### 9. No Blog Post Dates or Author Attribution
+- **Finding:** Blog listing page shows 9 posts but no publication dates, no authors
+- **Impact:** Google's December 2025 core update penalizes anonymous content even for non-YMYL. E-E-A-T now applies to ALL competitive queries
+- **Fix:** Add author bylines with bios and visible publication/update dates
+
+### 10. Navigation Points to Self on Non-JS Load
+- **Finding:** When JavaScript doesn't load, nav links for "Services", "Industries", "Company", "Resources" all `href` to the current page URL instead of a fallback
+- **Impact:** Bots that don't execute JS see broken navigation; links don't pass PageRank properly
+- **Fix:** Set the `href` to proper fallback URLs (e.g., `/services`, `/industries`)
+
+---
+
+## 🟡 Medium Priority (Fix Within 1 Month)
+
+### 11. Service Pages — Light on Content
+- **Finding:** AI Solutions page has ~250 words (below 800 word minimum for service pages)
+- **Impact:** Unlikely to rank for competitive terms like "AI development agency" or "custom AI solutions"
+- **Fix:** Expand each service page to 800+ words with:
+  - Detailed process descriptions
+  - Technology stack details
+  - Client results / case study snippets
+  - Pricing context or engagement models
+
+### 12. No BreadcrumbList Schema
+- **Impact:** Missing breadcrumb rich results in Google
+- **Fix:** Add `BreadcrumbList` JSON-LD on all inner pages
+
+### 13. Missing Service Schema
+- **Fix:** Add `Service` schema for each service page with provider, service type, area served
+
+### 14. No `hreflang` Tags
+- **Finding:** Site targets India but has no language declaration beyond the HTML `lang` attribute
+- **Impact:** Minor for single-language sites but could improve clarity for Google
+
+### 15. Footer Links Duplicated
+- **Finding:** Footer service links appear twice (once in list, once as separate links)
+- **Impact:** Dilutes link equity, confusing for crawlers
+
+---
+
+## 🟢 Low Priority (Backlog)
+
+### 16. No llms.txt for AI Crawlers
+- **Impact:** AI search engines (ChatGPT, Perplexity, Claude) have no guidance on citing your content
+
+### 17. Consider Adding a Case Study Schema
+- Use `CreativeWork` or `Article` schema on case study pages
+
+### 18. Newsletter Form — No CTA Optimization
+- The newsletter subscribe section has no value proposition or incentive
+
+---
+
+## E-E-A-T Assessment: 35/100 🔴
+
+| Factor | Weight | Score | Assessment |
+|--------|--------|-------|-----------|
+| Experience | 20% | 40 | Case studies show real work, but lack specific metrics and first-person narrative |
+| Expertise | 25% | 30 | No author credentials, no certifications shown, no team bios with qualifications |
+| Authoritativeness | 25% | 25 | Claims "Award Winning" but no awards listed; no external validation visible |
+| Trustworthiness | 30% | 45 | Good: contact info, address, phone. Bad: missing security headers, no reviews/testimonials on homepage |
+
+### Key E-E-A-T Improvements:
+1. Add **detailed founder bios** with qualifications, certifications, years of experience
+2. Show **specific project metrics** in case studies (traffic increases, conversion rates, timelines)
+3. **List awards/certifications** with links (Google Partner, AWS, etc.)
+4. Add **client testimonials** with names and companies
+5. Add **team page** with individual expertise areas
+
+---
+
+## AI Search Readiness (GEO): 15/100 🔴
+
+| Signal | Status |
+|--------|--------|
+| robots.txt AI crawler rules | ❌ No robots.txt at all |
+| llms.txt | ❌ Missing |
+| Schema markup (citability) | ❌ Missing |
+| Quotable facts & stats | 🟡 Some stats but unnumbered |
+| Content hierarchy (H1-H6) | ✅ Good heading structure |
+| Author attribution | ❌ Missing on blog |
+| Structured data for citations | ❌ Missing |
+
+---
+
+## Performance (Estimated from Source): 60/100
+
+> ⚠️ PageSpeed Insights API not enabled on your Google Cloud project. Scores estimated from source code analysis.
+
+| Signal | Finding |
+|--------|---------|
+| Framework | Next.js (SSR/ISR) ✅ |
+| Compression | Brotli ✅ |
+| CDN | Hostinger hCDN ✅ |
+| Cache-Control | `s-maxage=31536000` ✅ |
+| Image optimization | Next.js Image component likely used ✅ |
+| JavaScript bundle | Potential concern — heavy animations visible |
+| Server | `X-Powered-By: Next.js` exposed (minor security info leak) |
+| TTFB | CDN cache HIT detected — likely fast ✅ |
+
+### Potential CWV Concerns:
+- Heavy hero animations could impact **LCP** and **INP**
+- Ensure images have explicit `width`/`height` to avoid **CLS**
+- Remove `X-Powered-By` header for security
+
+---
+
+## Prioritized Action Plan
+
+| # | Priority | Action | Impact | Effort |
+|---|----------|--------|--------|--------|
+| 1 | 🔴 Critical | Add robots.txt | Indexing | 10 min |
+| 2 | 🔴 Critical | Add sitemap.xml (next-sitemap) | Indexing | 30 min |
+| 3 | 🔴 Critical | Add canonical tags on every page | Duplicate content | 1 hr |
+| 4 | 🔴 Critical | Add JSON-LD schema (Organization, WebSite, WebPage) | Rich results | 2 hrs |
+| 5 | 🔴 Critical | Add Open Graph + Twitter Card tags | Social sharing | 1 hr |
+| 6 | 🔴 Critical | Fix security headers in next.config.js | Trust/Security | 30 min |
+| 7 | 🟠 High | Unique title tags per page | CTR/Rankings | 1 hr |
+| 8 | 🟠 High | Expand About page + founder bios | E-E-A-T | 2 hrs |
+| 9 | 🟠 High | Add blog post dates + author attribution | E-E-A-T | 2 hrs |
+| 10 | 🟠 High | Fix nav link hrefs for SEO bots | Crawlability | 1 hr |
+| 11 | 🟡 Medium | Expand service pages to 800+ words | Rankings | 1 day |
+| 12 | 🟡 Medium | Add BreadcrumbList + Service schema | Rich results | 2 hrs |
+| 13 | 🟡 Medium | Remove duplicate footer links | Link equity | 30 min |
+| 14 | 🟢 Low | Add llms.txt for AI crawlers | AI citations | 30 min |
+| 15 | 🟢 Low | Add testimonials schema | Trust | 1 hr |
+
+---
+
+## Site Structure Discovered
+
+```
+innodify.in/
+├── / (Homepage)
+├── /about-us
+├── /contact-us
+├── /case-studies/
+│   ├── /salt-and-glitz-app
+│   ├── /salt-and-glitz-website
+│   ├── /dkhushalbhai-jewellers
+│   ├── /mahalaxmi-real-estate
+│   ├── /ustart
+│   ├── /unisphere-exam-portal
+│   └── /unisphere-app
+├── /services/
+│   ├── /ai-solutions
+│   ├── /crm-development
+│   ├── /saas-products
+│   ├── /web-development
+│   ├── /ecommerce
+│   └── /mobile-apps
+├── /industries/
+│   ├── /healthcare
+│   ├── /ecommerce
+│   ├── /fintech
+│   ├── /logistics
+│   ├── /education
+│   ├── /real-estate
+│   ├── /sports-gaming
+│   └── /media-entertainment
+├── /blog/ (9 posts)
+├── /career-at-innodify
+├── /privacy
+├── /terms
+└── /cookies
+```
+
+---
+
+## Visual Audit Recording
+
+![Browser Audit Recording](C:\Users\SHIVANSHU\.gemini\antigravity\brain\13c6d967-fdba-406e-9c25-dda1c643a1e2\visual_seo_audit_1772794164587.webp)

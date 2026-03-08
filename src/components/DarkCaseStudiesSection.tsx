@@ -124,7 +124,7 @@ export function DarkCaseStudiesSection() {
                     </motion.div>
 
                     {/* Navigation buttons */}
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 max-lg:hidden">
                         <motion.button
                             onClick={() => scroll("left")}
                             disabled={!canScrollLeft}

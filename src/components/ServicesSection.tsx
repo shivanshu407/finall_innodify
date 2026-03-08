@@ -102,13 +102,13 @@ export function ServicesSection() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+                    className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-lg:flex max-lg:flex-nowrap max-lg:overflow-x-auto max-lg:snap-x max-lg:snap-mandatory max-lg:pb-8 max-lg:-mx-6 max-lg:px-6 scrollbar-hide"
                 >
                     {services.map((service) => (
                         <motion.div
                             key={service.title}
                             variants={itemVariants}
-                            className="group relative"
+                            className="group relative max-lg:min-w-[85vw] max-lg:snap-center"
                         >
                             <Link href={service.href} className="block">
                                 <div className="liquid-glass-glow p-6 md:p-8 rounded-2xl h-full transition-all duration-500 hover:scale-[1.02] relative overflow-hidden">

@@ -128,7 +128,7 @@ export function HeroSection() {
                         >
                             <Link
                                 href="/contact-us"
-                                className="group relative inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold text-[#0e1012] overflow-hidden transition-all duration-300"
+                                className="group relative inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold text-[#0e1012] overflow-hidden transition-all duration-300 max-lg:w-full"
                                 style={{
                                     background: 'linear-gradient(135deg, #00adef 0%, #00d4ff 50%, #00adef 100%)',
                                 }}
@@ -144,7 +144,7 @@ export function HeroSection() {
 
                             <Link
                                 href="/case-studies"
-                                className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold text-white border-2 border-white/30 hover:border-[#00adef] hover:text-[#00adef] transition-all duration-300 backdrop-blur-sm"
+                                className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold text-white border-2 border-white/30 hover:border-[#00adef] hover:text-[#00adef] transition-all duration-300 backdrop-blur-sm max-lg:w-full"
                             >
                                 View Our Work
                             </Link>

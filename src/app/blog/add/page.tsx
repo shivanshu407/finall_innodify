@@ -197,7 +197,7 @@ export default function AddBlogPage() {
                                     onChange={(e) => setLoginUsername(e.target.value)}
                                     placeholder="Enter username"
                                     required
-                                    className="w-full px-4 py-3 rounded-lg bg-[#0e1012] text-[#e5e7eb] placeholder:text-[#6b7280] border border-[#2a2f36] focus:border-[#00adef] focus:ring-2 focus:ring-[#00adef]/30 outline-none transition-all"
+                                    className="w-full px-4 py-3 text-base rounded-lg bg-[#0e1012] text-[#e5e7eb] placeholder:text-[#6b7280] border border-[#2a2f36] focus:border-[#00adef] focus:ring-2 focus:ring-[#00adef]/30 outline-none transition-all"
                                 />
                             </div>
                             <div>
@@ -208,7 +208,7 @@ export default function AddBlogPage() {
                                     onChange={(e) => setLoginPassword(e.target.value)}
                                     placeholder="Enter password"
                                     required
-                                    className="w-full px-4 py-3 rounded-lg bg-[#0e1012] text-[#e5e7eb] placeholder:text-[#6b7280] border border-[#2a2f36] focus:border-[#00adef] focus:ring-2 focus:ring-[#00adef]/30 outline-none transition-all"
+                                    className="w-full px-4 py-3 text-base rounded-lg bg-[#0e1012] text-[#e5e7eb] placeholder:text-[#6b7280] border border-[#2a2f36] focus:border-[#00adef] focus:ring-2 focus:ring-[#00adef]/30 outline-none transition-all"
                                 />
                             </div>
                             {loginError && (

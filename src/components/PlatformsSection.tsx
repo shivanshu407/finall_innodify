@@ -60,7 +60,7 @@ export function PlatformsSection() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+                    className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-lg:flex max-lg:flex-nowrap max-lg:overflow-x-auto max-lg:snap-x max-lg:snap-mandatory max-lg:pb-8 max-lg:-mx-6 max-lg:px-6 scrollbar-hide"
                 >
                     {industries.map((industry, index) => (
                         <motion.div
@@ -69,7 +69,7 @@ export function PlatformsSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: index * 0.05 }}
-                            className="group"
+                            className="group max-lg:min-w-[45vw] max-lg:snap-center"
                         >
                             <Link href={industry.href} className="block">
                                 <div className="liquid-glass-glow flex flex-col items-center justify-center p-6 md:p-8 rounded-2xl transition-all duration-500 hover:scale-[1.03] relative overflow-hidden h-full">

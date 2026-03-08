@@ -63,7 +63,7 @@ export function LightStats() {
                                 className="bg-[#f8f8f8] p-8 rounded-2xl border border-gray-100 hover:border-[#00adef]/30 hover:shadow-xl transition-all group"
                             >
                                 <div className="flex items-baseline gap-1">
-                                    <span className="text-5xl md:text-6xl font-bold text-[#0e1012] group-hover:text-[#00adef] transition-colors font-serif">
+                                    <span className="text-5xl md:text-6xl font-bold text-[#0e1012] group-hover:text-[#00adef] transition-colors font-serif max-lg:text-4xl">
                                         {stat.value}
                                     </span>
                                     <span className="text-3xl font-serif text-[#00adef]">{stat.suffix}</span>

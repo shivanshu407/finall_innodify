@@ -74,9 +74,9 @@ export function Footer() {
                     </motion.div>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-16 border-b border-white/10">
+                <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-16 border-b border-white/10 max-lg:flex max-lg:flex-col max-lg:gap-10">
                     {/* Brand Column */}
-                    <div className="lg:col-span-4">
+                    <div className="lg:col-span-4 max-lg:w-full max-lg:text-center max-lg:flex max-lg:flex-col max-lg:items-center">
                         <Link href="/" className="inline-block mb-6">
                             <span className="text-2xl font-serif font-bold">Innodify</span>
                         </Link>
@@ -101,12 +101,12 @@ export function Footer() {
                     </div>
 
                     {/* Links Columns */}
-                    <div className="lg:col-span-2">
-                        <h4 className="font-semibold text-lg mb-6">Services</h4>
-                        <ul className="space-y-4">
+                    <div className="lg:col-span-2 max-lg:w-full max-lg:text-center max-lg:border-t max-lg:border-white/10 max-lg:pt-6">
+                        <h4 className="font-semibold text-lg mb-6 max-lg:mb-4">Services</h4>
+                        <ul className="space-y-4 max-lg:space-y-6">
                             {footerLinks.Services.map((link) => (
                                 <li key={link.name}>
-                                    <Link href={link.href} className="text-gray-400 hover:text-[#00adef] transition-colors text-sm">
+                                    <Link href={link.href} className="text-gray-400 hover:text-[#00adef] transition-colors text-sm max-lg:text-base max-lg:p-2 max-lg:block">
                                         {link.name}
                                     </Link>
                                 </li>
@@ -114,12 +114,12 @@ export function Footer() {
                         </ul>
                     </div>
 
-                    <div className="lg:col-span-2">
-                        <h4 className="font-semibold text-lg mb-6">Company</h4>
-                        <ul className="space-y-4">
+                    <div className="lg:col-span-2 max-lg:w-full max-lg:text-center max-lg:border-t max-lg:border-white/10 max-lg:pt-6">
+                        <h4 className="font-semibold text-lg mb-6 max-lg:mb-4">Company</h4>
+                        <ul className="space-y-4 max-lg:space-y-6">
                             {footerLinks.Company.map((link) => (
                                 <li key={link.name}>
-                                    <Link href={link.href} className="text-gray-400 hover:text-[#00adef] transition-colors text-sm">
+                                    <Link href={link.href} className="text-gray-400 hover:text-[#00adef] transition-colors text-sm max-lg:text-base max-lg:p-2 max-lg:block">
                                         {link.name}
                                     </Link>
                                 </li>
@@ -128,10 +128,10 @@ export function Footer() {
                     </div>
 
                     {/* Contact Column */}
-                    <div className="lg:col-span-4">
-                        <h4 className="font-semibold text-lg mb-6">Contact Us</h4>
-                        <ul className="space-y-6">
-                            <li className="flex items-start gap-4">
+                    <div className="lg:col-span-4 max-lg:w-full max-lg:text-center max-lg:border-t max-lg:border-white/10 max-lg:pt-6">
+                        <h4 className="font-semibold text-lg mb-6 max-lg:mb-4">Contact Us</h4>
+                        <ul className="space-y-6 max-lg:flex max-lg:flex-col max-lg:items-center">
+                            <li className="flex items-start gap-4 max-lg:flex-col max-lg:items-center">
                                 <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
                                     <MapPin className="w-5 h-5 text-[#00adef]" />
                                 </div>
@@ -143,7 +143,7 @@ export function Footer() {
                                     </p>
                                 </div>
                             </li>
-                            <li className="flex items-start gap-4">
+                            <li className="flex items-start gap-4 max-lg:flex-col max-lg:items-center max-lg:mt-4">
                                 <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
                                     <Phone className="w-5 h-5 text-[#00adef]" />
                                 </div>
@@ -153,7 +153,7 @@ export function Footer() {
                                     <p className="text-xs text-gray-500 mt-0.5">Mon-Sat, 10am - 7pm IST</p>
                                 </div>
                             </li>
-                            <li className="flex items-start gap-4">
+                            <li className="flex items-start gap-4 max-lg:flex-col max-lg:items-center max-lg:mt-4">
                                 <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
                                     <Mail className="w-5 h-5 text-[#00adef]" />
                                 </div>
@@ -168,27 +168,27 @@ export function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div className="text-sm text-gray-500">
+                <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6 max-lg:flex-col-reverse max-lg:gap-8">
+                    <div className="text-sm text-gray-500 max-lg:text-center">
                         © {new Date().getFullYear()} Innodify. All rights reserved.
                     </div>
 
-                    <div className="flex gap-6">
+                    <div className="flex gap-6 max-lg:gap-8">
                         {socialLinks.map((social) => (
                             <a
                                 key={social.label}
                                 href={social.href}
                                 aria-label={social.label}
-                                className="text-gray-400 hover:text-[#00adef] transition-colors"
+                                className="text-gray-400 hover:text-[#00adef] transition-colors max-lg:p-3 max-lg:-m-3 max-lg:flex max-lg:items-center max-lg:justify-center"
                             >
-                                <social.icon size={20} />
+                                <social.icon size={20} className="max-lg:w-6 max-lg:h-6" />
                             </a>
                         ))}
                     </div>
 
-                    <div className="flex gap-6 text-sm">
+                    <div className="flex gap-6 text-sm max-lg:flex-col max-lg:gap-6 max-lg:items-center max-lg:w-full">
                         {footerLinks.Legal.map((link) => (
-                            <Link key={link.name} href={link.href} className="text-gray-500 hover:text-white transition-colors">
+                            <Link key={link.name} href={link.href} className="text-gray-500 hover:text-white transition-colors max-lg:p-2 max-lg:block max-lg:text-base">
                                 {link.name}
                             </Link>
                         ))}
