@@ -2,13 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { DM_Sans, Libre_Baskerville } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
-import dynamic from "next/dynamic";
+import { Footer } from "@/components/Footer";
 import { OrganizationJsonLd } from "@/components/JsonLd";
-
-const Footer = dynamic(
-  () => import("@/components/Footer").then((mod) => mod.Footer),
-  { ssr: true }
-);
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -85,10 +80,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-      </head>
       <body
         className={`${dmSans.variable} ${libreBaskerville.variable} font-sans antialiased`}
       >
