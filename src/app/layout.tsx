@@ -2,19 +2,26 @@ import type { Metadata, Viewport } from "next";
 import { DM_Sans, Libre_Baskerville } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import dynamic from "next/dynamic";
 import { OrganizationJsonLd } from "@/components/JsonLd";
+
+const Footer = dynamic(
+  () => import("@/components/Footer").then((mod) => mod.Footer),
+  { ssr: true }
+);
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
+  display: "swap",
 });
 
 const libreBaskerville = Libre_Baskerville({
   variable: "--font-libre-baskerville",
   subsets: ["latin"],
   weight: ["400", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -78,6 +85,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+      </head>
       <body
         className={`${dmSans.variable} ${libreBaskerville.variable} font-sans antialiased`}
       >

@@ -1,10 +1,33 @@
 import type { Metadata } from "next";
 import { HeroSection } from "@/components/HeroSection";
-import { ServicesSection } from "@/components/ServicesSection";
-import { PlatformsSection } from "@/components/PlatformsSection";
-import { CTASection } from "@/components/CTASection";
-import { DarkStats } from "@/components/DarkStats";
-import { DarkCaseStudiesSection } from "@/components/DarkCaseStudiesSection";
+import dynamic from "next/dynamic";
+
+// Lazy load below-fold components to reduce initial JS bundle
+const DarkStats = dynamic(
+  () => import("@/components/DarkStats").then((mod) => mod.DarkStats),
+  { ssr: true }
+);
+const ServicesSection = dynamic(
+  () =>
+    import("@/components/ServicesSection").then((mod) => mod.ServicesSection),
+  { ssr: true }
+);
+const DarkCaseStudiesSection = dynamic(
+  () =>
+    import("@/components/DarkCaseStudiesSection").then(
+      (mod) => mod.DarkCaseStudiesSection
+    ),
+  { ssr: true }
+);
+const PlatformsSection = dynamic(
+  () =>
+    import("@/components/PlatformsSection").then((mod) => mod.PlatformsSection),
+  { ssr: true }
+);
+const CTASection = dynamic(
+  () => import("@/components/CTASection").then((mod) => mod.CTASection),
+  { ssr: true }
+);
 
 export const metadata: Metadata = {
   title: "Innodify | AI, Web & Mobile Development Agency in Surat",

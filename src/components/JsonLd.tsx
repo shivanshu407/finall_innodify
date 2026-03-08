@@ -73,6 +73,7 @@ export function OrganizationJsonLd() {
                 sameAs: [
                     'https://www.linkedin.com/in/theshivanshumishra/',
                     'https://www.linkedin.com/in/theabhishekmishra/',
+                    'https://www.instagram.com/innodify/',
                 ],
                 address: {
                     '@type': 'PostalAddress',

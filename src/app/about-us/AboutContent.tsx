@@ -7,7 +7,7 @@ import { ArrowRight, Users, Target, Zap, Heart, Award, Globe, Linkedin } from "l
 // Hero Section
 function AboutHero() {
     return (
-        <section className="relative min-h-[70vh] flex items-center bg-[#0e1012] overflow-hidden">
+        <section className="relative min-h-[70vh] flex items-center bg-[#0e1012] overflow-hidden pt-10 lg:pt-20">
             <div className="absolute inset-0 opacity-10">
                 <div className="absolute w-96 h-96 rounded-full bg-[#00adef] blur-3xl -top-48 -right-48" />
                 <div className="absolute w-96 h-96 rounded-full bg-[#00adef] blur-3xl -bottom-48 -left-48" />
@@ -223,39 +223,8 @@ function TeamSection() {
     );
 }
 
-// Partners Section
-function PartnersSection() {
-    const partners = ["Shopify", "Magento", "Adobe", "BigCommerce", "Commercetools", "Klaviyo"];
 
-    return (
-        <section className="py-20 bg-white">
-            <div className="container mx-auto px-6">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center"
-                >
-                    <span className="text-[#00adef] italic font-serif text-lg">Trusted Partnerships</span>
-                    <h2 className="mt-4 text-2xl md:text-3xl font-bold text-[#0e1012]">
-                        We're certified partners with industry leaders
-                    </h2>
 
-                    <div className="mt-12 flex flex-wrap justify-center gap-8">
-                        {partners.map((partner) => (
-                            <div
-                                key={partner}
-                                className="px-8 py-4 border border-gray-200 rounded-lg text-gray-500 hover:text-[#0e1012] hover:border-[#00adef] transition-colors"
-                            >
-                                {partner}
-                            </div>
-                        ))}
-                    </div>
-                </motion.div>
-            </div>
-        </section>
-    );
-}
 
 // CTA
 function AboutCTA() {
@@ -302,7 +271,6 @@ export default function AboutPageContent() {
             <MissionSection />
             <ValuesSection />
             <TeamSection />
-            <PartnersSection />
             <AboutCTA />
         </>
     );
