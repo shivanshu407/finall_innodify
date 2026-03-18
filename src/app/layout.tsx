@@ -4,6 +4,8 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { OrganizationJsonLd } from "@/components/JsonLd";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { ConsoleEasterEgg } from "@/components/ConsoleEasterEgg";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -84,7 +86,9 @@ export default function RootLayout({
         className={`${dmSans.variable} ${libreBaskerville.variable} font-sans antialiased`}
       >
         <OrganizationJsonLd />
-        <div className="bg-[#0e1012] min-h-screen flex flex-col">
+        <ScrollProgress />
+        <ConsoleEasterEgg />
+        <div className="bg-dark min-h-screen flex flex-col">
           <Header />
           <main className="flex-grow">
             {children}

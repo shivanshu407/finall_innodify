@@ -19,25 +19,25 @@ interface NavItem {
 // Magento Icon SVG
 const MagentoIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <path d="M12 2L3 7v10l3 1.73V8.73L12 5.46l6 3.27v10l3-1.73V7L12 2z" fill="#00adef" />
-    <path d="M12 8.5L9 10.23v7.04L12 19l3-1.73v-7.04L12 8.5z" fill="#00adef" />
+    <path d="M12 2L3 7v10l3 1.73V8.73L12 5.46l6 3.27v10l3-1.73V7L12 2z" fill="currentColor" />
+    <path d="M12 8.5L9 10.23v7.04L12 19l3-1.73v-7.04L12 8.5z" fill="currentColor" />
   </svg>
 );
 
 // Shopify Icon SVG
 const ShopifyIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <path d="M15.5 3.5c-.3 0-.5.2-.5.5v.5h-1c-.1-.5-.4-1-.9-1.3-.4-.3-.9-.4-1.4-.3-.9.2-1.6.9-1.9 1.8l-.3.8h-.5c-.3 0-.5.2-.5.5v.5H7v12h10V6h-1v-.5h-.5v-.5c0-.3-.2-.5-.5-.5h-.5zm-3 1c.3 0 .6.1.8.3.2.2.3.4.4.7h-1.5l.3-.8c0-.1.1-.2.2-.2h.8zM9 8h6v8H9V8z" fill="#00adef" />
+    <path d="M15.5 3.5c-.3 0-.5.2-.5.5v.5h-1c-.1-.5-.4-1-.9-1.3-.4-.3-.9-.4-1.4-.3-.9.2-1.6.9-1.9 1.8l-.3.8h-.5c-.3 0-.5.2-.5.5v.5H7v12h10V6h-1v-.5h-.5v-.5c0-.3-.2-.5-.5-.5h-.5zm-3 1c.3 0 .6.1.8.3.2.2.3.4.4.7h-1.5l.3-.8c0-.1.1-.2.2-.2h.8zM9 8h6v8H9V8z" fill="currentColor" />
   </svg>
 );
 
 // Headless Icon SVG
 const HeadlessIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z" fill="#00adef" />
-    <circle cx="20" cy="7" r="2" fill="#00adef" />
-    <circle cx="20" cy="12" r="2" fill="#00adef" />
-    <circle cx="20" cy="17" r="2" fill="#00adef" />
+    <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z" fill="currentColor" />
+    <circle cx="20" cy="7" r="2" fill="currentColor" />
+    <circle cx="20" cy="12" r="2" fill="currentColor" />
+    <circle cx="20" cy="17" r="2" fill="currentColor" />
   </svg>
 );
 
@@ -115,7 +115,7 @@ export function Header() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-[#0e1012] backdrop-blur-md shadow-lg py-3" : "bg-[#0e1012]/95 backdrop-blur-sm py-4"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-dark backdrop-blur-md shadow-lg py-3" : "bg-dark/95 backdrop-blur-sm py-4"
           }`}
         onMouseLeave={handleMouseLeave}
       >
@@ -141,7 +141,7 @@ export function Header() {
                   <a
                     href={item.href || "#"}
                     className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors ${activeDropdown === item.label
-                      ? "text-[#00adef]"
+                      ? "text-primary"
                       : "text-white/90 hover:text-white"
                       }`}
                   >
@@ -170,7 +170,7 @@ export function Header() {
                   <a
                     href={item.href || "#"}
                     className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors ${activeDropdown === item.label
-                      ? "text-[#00adef]"
+                      ? "text-primary"
                       : "text-white/90 hover:text-white"
                       }`}
                   >
@@ -197,7 +197,7 @@ export function Header() {
                           <a
                             key={dropItem.label}
                             href={dropItem.href}
-                            className="block px-4 py-2.5 text-gray-700 hover:text-[#00adef] hover:bg-gray-50 transition-colors font-medium text-sm"
+                            className="block px-4 py-2.5 text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors font-medium text-sm"
                           >
                             {dropItem.label}
                           </a>
@@ -211,7 +211,7 @@ export function Header() {
               {/* Contact Button */}
               <a
                 href="/contact-us"
-                className="ml-4 px-6 py-2 rounded-full border-2 border-[#00adef] text-[#00adef] text-sm font-semibold hover:bg-[#00adef] hover:text-[#0e1012] transition-all duration-300"
+                className="ml-4 px-6 py-2 rounded-full border-2 border-primary text-primary text-sm font-semibold hover:bg-primary hover:text-dark transition-all duration-300"
               >
                 CONTACT
               </a>
@@ -256,8 +256,8 @@ export function Header() {
                           href={item.href}
                           className="flex items-center gap-3 p-4 rounded-xl hover:bg-gray-50 transition-colors group"
                         >
-                          <span className="text-[#00adef]">{item.icon}</span>
-                          <span className="font-medium text-gray-800 group-hover:text-[#00adef] transition-colors">
+                          <span className="text-primary">{item.icon}</span>
+                          <span className="font-medium text-gray-800 group-hover:text-primary transition-colors">
                             {item.label}
                           </span>
                         </a>
@@ -280,7 +280,7 @@ export function Header() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-0 z-[100] bg-[#0e1012] lg:hidden"
+            className="fixed inset-0 z-[100] bg-dark lg:hidden"
           >
             <div className="p-6">
               <div className="flex justify-between items-center mb-8">
@@ -299,12 +299,12 @@ export function Header() {
                       <div className="border-b border-white/10 last:border-0">
                         <button
                           onClick={() => setActiveDropdown(activeDropdown === item.label ? null : item.label)}
-                          className="flex items-center justify-between w-full py-4 text-xl font-serif text-white hover:text-[#00adef] transition-colors"
+                          className="flex items-center justify-between w-full py-4 text-xl font-serif text-white hover:text-primary transition-colors"
                         >
                           {item.label}
                           <ChevronDown
                             size={20}
-                            className={`transition-transform duration-300 ${activeDropdown === item.label ? "rotate-180 text-[#00adef]" : ""}`}
+                            className={`transition-transform duration-300 ${activeDropdown === item.label ? "rotate-180 text-primary" : ""}`}
                           />
                         </button>
                         <AnimatePresence>
@@ -324,7 +324,7 @@ export function Header() {
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className="px-6 py-3 text-base text-gray-300 hover:text-white hover:bg-white/5 transition-colors flex items-center gap-3"
                                   >
-                                    {subItem.icon && <span className="text-[#00adef]">{subItem.icon}</span>}
+                                    {subItem.icon && <span className="text-primary">{subItem.icon}</span>}
                                     {subItem.label}
                                   </a>
                                 ))}
@@ -337,7 +337,7 @@ export function Header() {
                       <a
                         href={item.href || "#"}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="block py-4 text-xl font-serif text-white hover:text-[#00adef] transition-colors border-b border-white/10"
+                        className="block py-4 text-xl font-serif text-white hover:text-primary transition-colors border-b border-white/10"
                       >
                         {item.label}
                       </a>
@@ -347,7 +347,7 @@ export function Header() {
                 <div className="pt-6">
                   <a
                     href="/contact-us"
-                    className="flex items-center justify-center w-full px-8 py-4 bg-[#00adef] text-[#0e1012] font-semibold rounded-full hover:bg-[#00adef]/90 transition-colors"
+                    className="flex items-center justify-center w-full px-8 py-4 bg-primary text-dark font-semibold rounded-full hover:bg-primary/90 transition-colors"
                   >
                     CONTACT US
                   </a>

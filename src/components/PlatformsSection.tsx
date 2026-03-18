@@ -17,24 +17,8 @@ const industries = [
 
 export function PlatformsSection() {
     return (
-        <section id="industries" className="py-24 md:py-32 bg-[#f8f9fa] relative overflow-hidden">
-            {/* Background effects */}
-            <div className="absolute inset-0">
-                <motion.div
-                    className="absolute w-[500px] h-[500px] rounded-full bg-[#00adef]/5 blur-3xl"
-                    style={{ top: '10%', left: '-15%' }}
-                    animate={{ x: [0, 50, 0], y: [0, -30, 0] }}
-                    transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <motion.div
-                    className="absolute w-[400px] h-[400px] rounded-full bg-cyan-500/5 blur-3xl"
-                    style={{ bottom: '10%', right: '-10%' }}
-                    animate={{ x: [0, -40, 0], y: [0, 40, 0] }}
-                    transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-                />
-            </div>
-
-            <div className="container mx-auto px-6 relative z-10">
+        <section id="industries" className="py-24 md:py-32 bg-light relative overflow-hidden">
+            <div className="container mx-auto px-6">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -43,11 +27,11 @@ export function PlatformsSection() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <span className="text-sm font-medium text-[#00adef] uppercase tracking-wider">
+                    <span className="text-sm font-medium text-primary uppercase tracking-wider">
                         Industries
                     </span>
-                    <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-serif text-[#0e1012]">
-                        Expertise across <span className="text-gradient-liquid">sectors</span>
+                    <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-serif text-dark">
+                        Expertise across <span className="text-primary italic">sectors</span>
                     </h2>
                     <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
                         We bring deep domain knowledge to deliver tailored solutions for diverse industries.
@@ -68,34 +52,22 @@ export function PlatformsSection() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: index * 0.05 }}
+                            transition={{ duration: 0.4, delay: index * 0.05, ease: [0.25, 1, 0.5, 1] }}
                             className="group max-lg:min-w-[45vw] max-lg:snap-center"
                         >
                             <Link href={industry.href} className="block">
-                                <div className="liquid-glass-glow flex flex-col items-center justify-center p-6 md:p-8 rounded-2xl transition-all duration-500 hover:scale-[1.03] relative overflow-hidden h-full">
-                                    {/* Shimmer effect */}
-                                    <motion.div
-                                        className="absolute inset-0 bg-gradient-to-r from-transparent via-[#00adef]/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100"
-                                        initial={{ x: '-100%' }}
-                                        whileHover={{ x: '200%' }}
-                                        transition={{ duration: 0.6 }}
-                                    />
-
-                                    <div className="relative z-10 flex flex-col items-center">
-                                        {/* Icon */}
-                                        <motion.div
-                                            className="w-16 h-16 rounded-xl flex items-center justify-center mb-4 bg-[#00adef]/10"
-                                        >
-                                            <industry.icon className="w-8 h-8 text-[#00adef] transition-transform group-hover:scale-110" />
-                                        </motion.div>
-
-                                        <span className="text-base font-semibold text-[#0e1012] group-hover:text-gradient-liquid transition-all text-center">
-                                            {industry.name}
-                                        </span>
-                                        <span className="text-xs text-gray-500 mt-1 text-center group-hover:text-gray-600 transition-colors">
-                                            {industry.description}
-                                        </span>
+                                <div className="bg-white border border-gray-100 flex flex-col items-center justify-center p-6 md:p-8 rounded-2xl transition-all duration-200 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] h-full">
+                                    {/* Icon */}
+                                    <div className="w-16 h-16 rounded-xl flex items-center justify-center mb-4 bg-primary/10">
+                                        <industry.icon className="w-8 h-8 text-primary transition-transform group-hover:scale-110" />
                                     </div>
+
+                                    <span className="text-base font-semibold text-dark group-hover:text-primary transition-colors text-center">
+                                        {industry.name}
+                                    </span>
+                                    <span className="text-xs text-gray-500 mt-1 text-center">
+                                        {industry.description}
+                                    </span>
                                 </div>
                             </Link>
                         </motion.div>

@@ -1,16 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, CheckCircle2, Smartphone, Zap, Settings, Shield, ArrowRight } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Smartphone, Zap, Settings, Shield } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import { NextCaseStudy, CaseStudyCTA } from "@/components/CaseStudyShared";
 
 export default function CaseStudyContent() {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
-            <section className="bg-[#0e1012] pt-32 pb-20 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1600&q=80')] bg-cover bg-center opacity-20" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0e1012] via-[#0e1012]/80 to-transparent" />
+            <section className="bg-dark pt-32 pb-20 relative overflow-hidden">
+                <Image src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1600&q=80" alt="" fill className="object-cover opacity-20" priority />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/80 to-transparent" />
 
                 <div className="container mx-auto px-6 relative z-10">
                     <Link
@@ -27,10 +29,10 @@ export default function CaseStudyContent() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
                         >
-                            <span className="text-[#00adef] font-semibold tracking-wider text-sm uppercase">Ride Hailing • React Native • Native Modules</span>
+                            <span className="text-primary font-semibold tracking-wider text-sm uppercase">Ride Hailing • React Native • Native Modules</span>
                             <h1 className="mt-4 text-4xl md:text-6xl font-serif text-white leading-tight">
                                 Ustart: Zero-Commission <br />
-                                <span className="text-[#00adef] italic">Cab & Bike App</span>
+                                <span className="text-primary italic">Cab & Bike App</span>
                             </h1>
                             <p className="mt-6 text-xl text-gray-300 max-w-2xl">
                                 How we built a highly optimized, native-performance ride hailing platform for cabs and bikes using Expo and custom Native Modules.
@@ -77,14 +79,14 @@ export default function CaseStudyContent() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                         >
-                            <h2 className="text-2xl font-bold text-[#0e1012] mb-4">About Client</h2>
+                            <h2 className="text-2xl font-bold text-dark mb-4">About Client</h2>
                             <p className="text-gray-600 leading-relaxed mb-8">
                                 Ustart is disrupting the traditional ride-hailing industry by introducing a zero-commission model for cabs, bikes, and other transportation services. To succeed, they needed an app that wasn't just functional, but blazingly fast and highly responsive. Managing real-time location data, smooth map interfaces, and instant ride matching required exceptional client-side performance that traditional hybrid apps often struggle to deliver.
                             </p>
                             <div className="flex flex-wrap gap-3">
-                                <span className="px-4 py-2 bg-[#00adef]/10 text-[#00adef] rounded-full text-sm font-medium">Mobility</span>
-                                <span className="px-4 py-2 bg-[#00adef]/10 text-[#00adef] rounded-full text-sm font-medium">Gig Economy</span>
-                                <span className="px-4 py-2 bg-[#00adef]/10 text-[#00adef] rounded-full text-sm font-medium">Real-time GPS</span>
+                                <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">Mobility</span>
+                                <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">Gig Economy</span>
+                                <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">Real-time GPS</span>
                             </div>
                         </motion.div>
 
@@ -94,11 +96,11 @@ export default function CaseStudyContent() {
                             viewport={{ once: true }}
                             className="bg-gray-50 rounded-2xl p-8 border border-gray-100"
                         >
-                            <h2 className="text-2xl font-bold text-[#0e1012] mb-6">The Requirements</h2>
+                            <h2 className="text-2xl font-bold text-dark mb-6">The Requirements</h2>
                             <ul className="space-y-4">
                                 <li className="flex gap-3">
-                                    <div className="mt-1 w-6 h-6 bg-[#00adef]/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <Zap size={14} className="text-[#00adef]" />
+                                    <div className="mt-1 w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <Zap size={14} className="text-primary" />
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-gray-900">Extreme Performance</h3>
@@ -106,8 +108,8 @@ export default function CaseStudyContent() {
                                     </div>
                                 </li>
                                 <li className="flex gap-3">
-                                    <div className="mt-1 w-6 h-6 bg-[#00adef]/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <Settings size={14} className="text-[#00adef]" />
+                                    <div className="mt-1 w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <Settings size={14} className="text-primary" />
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-gray-900">Native Module Access</h3>
@@ -115,8 +117,8 @@ export default function CaseStudyContent() {
                                     </div>
                                 </li>
                                 <li className="flex gap-3">
-                                    <div className="mt-1 w-6 h-6 bg-[#00adef]/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <Smartphone size={14} className="text-[#00adef]" />
+                                    <div className="mt-1 w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <Smartphone size={14} className="text-primary" />
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-gray-900">Custom UI/UX</h3>
@@ -130,7 +132,7 @@ export default function CaseStudyContent() {
             </section>
 
             {/* Solution Section */}
-            <section className="py-20 bg-[#0e1012] text-white">
+            <section className="py-20 bg-dark text-white">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -138,9 +140,9 @@ export default function CaseStudyContent() {
                         viewport={{ once: true }}
                         className="text-center max-w-3xl mx-auto mb-16"
                     >
-                        <span className="text-[#00adef] font-semibold tracking-wider text-sm uppercase">The Solution</span>
+                        <span className="text-primary font-semibold tracking-wider text-sm uppercase">The Solution</span>
                         <h2 className="mt-4 text-3xl md:text-4xl font-serif">
-                            Highly Optimized <span className="text-[#00adef] italic">Expo React Native App</span>
+                            Highly Optimized <span className="text-primary italic">Expo React Native App</span>
                         </h2>
                         <p className="mt-4 text-gray-400">
                             We engineered a custom mobile application bypassing standard JS bottlenecks by leveraging native functions directly via Expo native modules.
@@ -173,8 +175,8 @@ export default function CaseStudyContent() {
                                 transition={{ delay: index * 0.1 }}
                                 className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors"
                             >
-                                <div className="w-12 h-12 bg-[#00adef]/20 rounded-xl flex items-center justify-center mb-6">
-                                    <item.icon className="text-[#00adef]" />
+                                <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-6">
+                                    <item.icon className="text-primary" />
                                 </div>
                                 <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
                                 <p className="text-gray-400 leading-relaxed">{item.description}</p>
@@ -190,7 +192,7 @@ export default function CaseStudyContent() {
                     <div className="flex flex-wrap justify-center gap-4 md:gap-12 items-center opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
                         {["React Native", "Expo", "Native Modules", "WebSockets", "Maps API"].map((tech) => (
                             <span key={tech} className="text-xl font-bold text-gray-400 flex items-center gap-2">
-                                <CheckCircle2 size={18} className="text-[#00adef]" />
+                                <CheckCircle2 size={18} className="text-primary" />
                                 {tech}
                             </span>
                         ))}
@@ -198,21 +200,13 @@ export default function CaseStudyContent() {
                 </div>
             </section>
 
-            {/* Bottom CTA */}
-            <section className="py-20 bg-gray-50 border-t border-gray-200">
-                <div className="container mx-auto px-6 text-center">
-                    <h2 className="text-3xl font-serif text-[#0e1012] mb-6">
-                        Need a high-performance native app?
-                    </h2>
-                    <Link
-                        href="/contact-us"
-                        className="inline-flex items-center justify-center gap-2 max-lg:w-full bg-[#00adef] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#0090c9] transition-colors"
-                    >
-                        Let's Discuss Your Project
-                        <ArrowRight size={20} />
-                    </Link>
-                </div>
-            </section>
+            <NextCaseStudy
+                title="Unisphere: Highly Secure Exam Portal"
+                client="BML Munjal University"
+                image="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80"
+                link="/case-studies/unisphere-exam-portal"
+            />
+            <CaseStudyCTA heading="Need a high-performance native app?" />
         </div>
     );
 }

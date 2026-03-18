@@ -1,17 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, CheckCircle2, Shield, Zap, Globe, Smartphone, LayoutDashboard, Users, Lock, ArrowRight } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Shield, Zap, Smartphone, LayoutDashboard, Users, Lock } from "lucide-react";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import { NextCaseStudy, CaseStudyCTA } from "@/components/CaseStudyShared";
 
 export default function CaseStudyContent() {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
-            <section className="bg-[#0e1012] pt-32 pb-20 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80')] bg-cover bg-center opacity-20" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0e1012] via-[#0e1012]/80 to-transparent" />
+            <section className="bg-dark pt-32 pb-20 relative overflow-hidden">
+                <Image src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80" alt="" fill className="object-cover opacity-20" priority />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/80 to-transparent" />
 
                 <div className="container mx-auto px-6 relative z-10">
                     <Link
@@ -28,10 +29,10 @@ export default function CaseStudyContent() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
                         >
-                            <span className="text-[#00adef] font-semibold tracking-wider text-sm uppercase">Real Estate • CRM • Cloud</span>
+                            <span className="text-primary font-semibold tracking-wider text-sm uppercase">Real Estate • CRM • Cloud</span>
                             <h1 className="mt-4 text-4xl md:text-6xl font-serif text-white leading-tight">
                                 Cloud-Based Transformation of <br />
-                                <span className="text-[#00adef] italic">Real Estate Operations</span>
+                                <span className="text-primary italic">Real Estate Operations</span>
                             </h1>
                             <p className="mt-6 text-xl text-gray-300 max-w-2xl">
                                 How Mahalaxmi Real Estate Group achieved 100% data security and boosted productivity by 30% with a custom cloud-native CRM.
@@ -74,7 +75,7 @@ export default function CaseStudyContent() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                         >
-                            <h2 className="text-2xl font-bold text-[#0e1012] mb-4">About Client</h2>
+                            <h2 className="text-2xl font-bold text-dark mb-4">About Client</h2>
                             <p className="text-gray-600 leading-relaxed mb-8">
                                 Mahalaxmi Real Estate Group is a prominent real estate consultancy operating in the competitive Delhi NCR market. Specializing in residential and commercial property sales, they manage a dynamic team of sales agents and handle a high volume of leads daily. Their focus is on efficiency, data security, and providing a seamless experience for both their agents and clients.
                             </p>
@@ -86,7 +87,7 @@ export default function CaseStudyContent() {
                             viewport={{ once: true }}
                             className="bg-gray-50 rounded-2xl p-8 border border-gray-100"
                         >
-                            <h2 className="text-2xl font-bold text-[#0e1012] mb-6">The Challenges</h2>
+                            <h2 className="text-2xl font-bold text-dark mb-6">The Challenges</h2>
                             <ul className="space-y-4">
                                 <li className="flex gap-3">
                                     <div className="mt-1 w-6 h-6 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
@@ -122,7 +123,7 @@ export default function CaseStudyContent() {
             </section>
 
             {/* Solution Section */}
-            <section className="py-20 bg-[#0e1012] text-white">
+            <section className="py-20 bg-dark text-white">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -130,9 +131,9 @@ export default function CaseStudyContent() {
                         viewport={{ once: true }}
                         className="text-center max-w-3xl mx-auto mb-16"
                     >
-                        <span className="text-[#00adef] font-semibold tracking-wider text-sm uppercase">The Solution</span>
+                        <span className="text-primary font-semibold tracking-wider text-sm uppercase">The Solution</span>
                         <h2 className="mt-4 text-3xl md:text-4xl font-serif">
-                            A Modern, Cloud-Native <span className="text-[#00adef] italic">CRM</span>
+                            A Modern, Cloud-Native <span className="text-primary italic">CRM</span>
                         </h2>
                         <p className="mt-4 text-gray-400">
                             We engineered a tailored CRM solution hosted securely on the web for instant access from any location.
@@ -165,8 +166,8 @@ export default function CaseStudyContent() {
                                 transition={{ delay: index * 0.1 }}
                                 className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-colors"
                             >
-                                <div className="w-12 h-12 bg-[#00adef]/20 rounded-xl flex items-center justify-center mb-6">
-                                    <item.icon className="text-[#00adef]" />
+                                <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-6">
+                                    <item.icon className="text-primary" />
                                 </div>
                                 <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
                                 <p className="text-gray-400 leading-relaxed">{item.description}</p>
@@ -182,7 +183,7 @@ export default function CaseStudyContent() {
                     <div className="flex flex-wrap justify-center gap-4 md:gap-12 items-center opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
                         {["Node.js", "Preact", "Cloud Native", "Secure Auth", "Real-time DB"].map((tech) => (
                             <span key={tech} className="text-xl font-bold text-gray-400 flex items-center gap-2">
-                                <CheckCircle2 size={18} className="text-[#00adef]" />
+                                <CheckCircle2 size={18} className="text-primary" />
                                 {tech}
                             </span>
                         ))}
@@ -199,8 +200,8 @@ export default function CaseStudyContent() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                         >
-                            <h2 className="text-3xl md:text-4xl font-serif text-[#0e1012] mb-8">
-                                Measurable <span className="text-[#00adef] italic">Impact</span>
+                            <h2 className="text-3xl md:text-4xl font-serif text-dark mb-8">
+                                Measurable <span className="text-primary italic">Impact</span>
                             </h2>
                             <div className="space-y-6">
                                 <div className="flex gap-4">
@@ -208,7 +209,7 @@ export default function CaseStudyContent() {
                                         <Shield className="text-green-600" />
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-[#0e1012]">100% Data Security</h3>
+                                        <h3 className="text-xl font-bold text-dark">100% Data Security</h3>
                                         <p className="text-gray-600">Zero instances of unauthorized data access due to strict masking policies.</p>
                                     </div>
                                 </div>
@@ -217,7 +218,7 @@ export default function CaseStudyContent() {
                                         <Zap className="text-blue-600" />
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-[#0e1012]">30% Productivity Increase</h3>
+                                        <h3 className="text-xl font-bold text-dark">30% Productivity Increase</h3>
                                         <p className="text-gray-600">Agents save hours per week with focused views and lightning-fast interface.</p>
                                     </div>
                                 </div>
@@ -226,7 +227,7 @@ export default function CaseStudyContent() {
                                         <Users className="text-purple-600" />
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-[#0e1012]">Real-Time Visibility</h3>
+                                        <h3 className="text-xl font-bold text-dark">Real-Time Visibility</h3>
                                         <p className="text-gray-600">Management has instant access to pipeline and performance from anywhere.</p>
                                     </div>
                                 </div>
@@ -237,7 +238,7 @@ export default function CaseStudyContent() {
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="bg-[#0e1012] rounded-3xl p-10 relative overflow-hidden"
+                            className="bg-dark rounded-3xl p-10 relative overflow-hidden"
                         >
                             <div className="absolute top-0 right-0 p-8 opacity-10">
                                 <span className="text-9xl font-serif text-white">"</span>
@@ -247,7 +248,7 @@ export default function CaseStudyContent() {
                                     "The new web CRM has been a game-changer for Mahalaxmi Real Estate. It's incredibly fast and gives us total control. I finally have peace of mind knowing my client data is secure, and my team can access exactly what they need."
                                 </p>
                                 <footer className="mt-8 flex items-center gap-4">
-                                    <div className="w-12 h-12 bg-[#00adef] rounded-full flex items-center justify-center text-white font-bold text-xl">
+                                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl">
                                         M
                                     </div>
                                     <div>
@@ -261,21 +262,13 @@ export default function CaseStudyContent() {
                 </div>
             </section>
 
-            {/* Bottom CTA */}
-            <section className="py-20 bg-gray-50 border-t border-gray-200">
-                <div className="container mx-auto px-6 text-center">
-                    <h2 className="text-3xl font-serif text-[#0e1012] mb-6">
-                        Ready to transform your operations?
-                    </h2>
-                    <Link
-                        href="/contact-us"
-                        className="inline-flex items-center gap-2 bg-[#00adef] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#0090c9] transition-colors"
-                    >
-                        Start Your Project
-                        <ArrowRight size={20} />
-                    </Link>
-                </div>
-            </section>
+            <NextCaseStudy
+                title="Ustart: Zero-Commission Cab & Bike App"
+                client="Ustart"
+                image="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80"
+                link="/case-studies/ustart"
+            />
+            <CaseStudyCTA heading="Ready to transform your operations?" />
         </div>
     );
 }

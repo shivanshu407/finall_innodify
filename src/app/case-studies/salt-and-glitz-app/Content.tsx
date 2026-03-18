@@ -1,16 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, CheckCircle2, Smartphone, Globe, Apple, Play, Gem, Palette, Shield, Zap, ArrowRight } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Smartphone, Globe, Apple, Play, Gem, Palette, Shield, Zap } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import { NextCaseStudy, CaseStudyCTA } from "@/components/CaseStudyShared";
 
 export default function CaseStudyContent() {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
-            <section className="bg-[#0e1012] pt-32 pb-20 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=1600&q=80')] bg-cover bg-center opacity-20" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0e1012] via-[#0e1012]/80 to-transparent" />
+            <section className="bg-dark pt-32 pb-20 relative overflow-hidden">
+                <Image src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=1600&q=80" alt="" fill className="object-cover opacity-20" priority />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/80 to-transparent" />
 
                 <div className="container mx-auto px-6 relative z-10">
                     <Link
@@ -77,7 +79,7 @@ export default function CaseStudyContent() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                         >
-                            <h2 className="text-2xl font-bold text-[#0e1012] mb-4">About Client</h2>
+                            <h2 className="text-2xl font-bold text-dark mb-4">About Client</h2>
                             <p className="text-gray-600 leading-relaxed mb-8">
                                 Salt & Glitz is a modern jewellery brand specializing in CVD (Chemical Vapor Deposition) lab-grown diamond jewellery. With a focus on ethical, sustainable luxury, they offer stunning diamond pieces that are environmentally conscious and conflict-free. They needed a complete digital presence that reflected their innovative approach to fine jewellery.
                             </p>
@@ -94,7 +96,7 @@ export default function CaseStudyContent() {
                             viewport={{ once: true }}
                             className="bg-gray-50 rounded-2xl p-8 border border-gray-100"
                         >
-                            <h2 className="text-2xl font-bold text-[#0e1012] mb-6">The Requirements</h2>
+                            <h2 className="text-2xl font-bold text-dark mb-6">The Requirements</h2>
                             <ul className="space-y-4">
                                 <li className="flex gap-3">
                                     <div className="mt-1 w-6 h-6 bg-[#E91E63]/20 rounded-full flex items-center justify-center flex-shrink-0">
@@ -130,7 +132,7 @@ export default function CaseStudyContent() {
             </section>
 
             {/* Solution Section */}
-            <section className="py-20 bg-[#0e1012] text-white">
+            <section className="py-20 bg-dark text-white">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -207,7 +209,7 @@ export default function CaseStudyContent() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                         >
-                            <h2 className="text-3xl md:text-4xl font-serif text-[#0e1012] mb-8">
+                            <h2 className="text-3xl md:text-4xl font-serif text-dark mb-8">
                                 Delivered <span className="text-[#E91E63] italic">Results</span>
                             </h2>
                             <div className="space-y-6">
@@ -216,7 +218,7 @@ export default function CaseStudyContent() {
                                         <Apple className="text-green-600" />
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-[#0e1012]">Published on App Store</h3>
+                                        <h3 className="text-xl font-bold text-dark">Published on App Store</h3>
                                         <p className="text-gray-600">Successfully launched on Apple's App Store, reaching iOS users worldwide.</p>
                                     </div>
                                 </div>
@@ -225,7 +227,7 @@ export default function CaseStudyContent() {
                                         <Play className="text-blue-600" />
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-[#0e1012]">Published on Play Store</h3>
+                                        <h3 className="text-xl font-bold text-dark">Published on Play Store</h3>
                                         <p className="text-gray-600">Live on Google Play Store, accessible to millions of Android users.</p>
                                     </div>
                                 </div>
@@ -234,7 +236,7 @@ export default function CaseStudyContent() {
                                         <Zap className="text-purple-600" />
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-[#0e1012]">Complete Digital Presence</h3>
+                                        <h3 className="text-xl font-bold text-dark">Complete Digital Presence</h3>
                                         <p className="text-gray-600">Unified brand experience across mobile apps and website for maximum reach.</p>
                                     </div>
                                 </div>
@@ -245,7 +247,7 @@ export default function CaseStudyContent() {
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="bg-[#0e1012] rounded-3xl p-10 relative overflow-hidden"
+                            className="bg-dark rounded-3xl p-10 relative overflow-hidden"
                         >
                             <div className="absolute top-0 right-0 p-8 opacity-10">
                                 <span className="text-9xl font-serif text-white">"</span>
@@ -269,21 +271,13 @@ export default function CaseStudyContent() {
                 </div>
             </section>
 
-            {/* Bottom CTA */}
-            <section className="py-20 bg-gray-50 border-t border-gray-200">
-                <div className="container mx-auto px-6 text-center">
-                    <h2 className="text-3xl font-serif text-[#0e1012] mb-6">
-                        Ready to launch your app?
-                    </h2>
-                    <Link
-                        href="/contact-us"
-                        className="inline-flex items-center gap-2 bg-[#00adef] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#0090c9] transition-colors"
-                    >
-                        Start Your Project
-                        <ArrowRight size={20} />
-                    </Link>
-                </div>
-            </section>
+            <NextCaseStudy
+                title="Custom eCommerce Website for CVD Diamond Jewellery"
+                client="Salt & Glitz"
+                image="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80"
+                link="/case-studies/salt-and-glitz-website"
+            />
+            <CaseStudyCTA heading="Ready to launch your app?" />
         </div>
     );
 }

@@ -1,202 +1,124 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const caseStudies = [
     {
-        id: "salt-glitz-app",
-        title: "Custom Flutter App for CVD Diamond Jewellery",
-        category: "Flutter App",
-        image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80",
-        stats: "2 App Stores",
-        link: "/case-studies/salt-and-glitz-app"
-    },
-    {
-        id: "salt-glitz-website",
-        title: "Custom eCommerce Website for CVD Diamond Jewellery",
-        category: "eCommerce",
-        image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80",
-        stats: "100% Custom",
-        link: "/case-studies/salt-and-glitz-website"
-    },
-    {
-        id: "dkhushalbhai",
-        title: "Shopify Store for Premium Jewellery Brand",
-        category: "Shopify",
-        image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80",
-        stats: "Full eCommerce",
-        link: "/case-studies/dkhushalbhai-jewellers"
-    },
-    {
-        id: "mahalaxmi",
-        title: "Cloud-Based Transformation of Real Estate Operations",
-        category: "Cloud CRM",
+        title: "Mahalaxmi Real Estate",
+        category: "Real Estate Platform",
         image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
-        stats: "100% Security",
-        link: "/case-studies/mahalaxmi-real-estate"
+        href: "/case-studies/mahalaxmi-real-estate"
     },
     {
-        id: "ustart-app",
-        title: "Ustart: Zero-Commission Ride Hailing",
-        category: "React Native",
-        image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80",
-        stats: "Native Performance",
-        link: "/case-studies/ustart"
+        title: "Salt & Glitz",
+        category: "E-Commerce App",
+        image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
+        href: "/case-studies/salt-and-glitz-app"
     },
     {
-        id: "unisphere-exam",
-        title: "Unisphere: Highly Secure Exam Portal",
-        category: "Cloud Infra",
+        title: "Unisphere Exam Portal",
+        category: "EdTech Platform",
         image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80",
-        stats: "Kubernetes (EKS)",
-        link: "/case-studies/unisphere-exam-portal"
+        href: "/case-studies/unisphere-exam-portal"
     },
     {
-        id: "unisphere-app",
-        title: "Unisphere: University Management System",
-        category: "Mobile App",
-        image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80",
-        stats: "5000+ Daily Users",
-        link: "/case-studies/unisphere-app"
+        title: "DKhushalbhai Jewellers",
+        category: "E-Commerce Website",
+        image: "https://images.unsplash.com/photo-1515562141589-67f0d937be40?w=800&q=80",
+        href: "/case-studies/dkhushalbhai-jewellers"
+    },
+    {
+        title: "UStart",
+        category: "Startup Platform",
+        image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80",
+        href: "/case-studies/ustart"
     }
 ];
 
 export function DarkCaseStudiesSection() {
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
-    const [canScrollLeft, setCanScrollLeft] = useState(false);
-    const [canScrollRight, setCanScrollRight] = useState(true);
-
-    const checkScroll = () => {
-        if (scrollContainerRef.current) {
-            const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-            setCanScrollLeft(scrollLeft > 0);
-            setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-        }
-    };
-
-    useEffect(() => {
-        checkScroll();
-        window.addEventListener("resize", checkScroll);
-        return () => window.removeEventListener("resize", checkScroll);
-    }, []);
+    const scrollRef = useRef<HTMLDivElement>(null);
 
     const scroll = (direction: "left" | "right") => {
-        if (scrollContainerRef.current) {
+        if (scrollRef.current) {
             const scrollAmount = 400;
-            const newScrollLeft = direction === "left"
-                ? scrollContainerRef.current.scrollLeft - scrollAmount
-                : scrollContainerRef.current.scrollLeft + scrollAmount;
-
-            scrollContainerRef.current.scrollTo({
-                left: newScrollLeft,
+            scrollRef.current.scrollBy({
+                left: direction === "left" ? -scrollAmount : scrollAmount,
                 behavior: "smooth"
             });
-            setTimeout(checkScroll, 300);
         }
     };
 
     return (
-        <section className="py-24 bg-[#f8f9fa] relative overflow-hidden">
-            {/* Background effects */}
-            <div className="absolute inset-0">
-                <motion.div
-                    className="absolute w-[600px] h-[600px] rounded-full bg-[#00adef]/5 blur-3xl"
-                    style={{ top: '20%', right: '-15%' }}
-                    animate={{ x: [0, -40, 0], y: [0, 30, 0] }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-                />
-            </div>
+        <section className="py-24 md:py-32 bg-dark relative overflow-hidden">
+            {/* Subtle geometric accent */}
+            <div className="absolute bottom-0 left-0 w-1/3 h-full bg-navy/30 skew-x-12 -translate-x-1/4" />
 
             <div className="container mx-auto px-6 relative z-10">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+                {/* Header row */}
+                <div className="flex items-end justify-between mb-12">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <span className="text-[#00adef] italic font-serif text-lg">Our Work</span>
-                        <h2 className="mt-4 text-4xl md:text-5xl font-serif text-[#0e1012]">
-                            Selected <span className="text-gradient-liquid italic">case studies</span>
+                        <span className="text-primary italic font-serif text-lg">Our Work</span>
+                        <h2 className="mt-3 text-3xl md:text-5xl font-serif text-white">
+                            Featured <span className="text-primary italic">case studies</span>
                         </h2>
                     </motion.div>
 
-                    {/* Navigation buttons */}
-                    <div className="flex gap-4 max-lg:hidden">
-                        <motion.button
+                    {/* Navigation Arrows */}
+                    <div className="hidden lg:flex gap-3">
+                        <button
                             onClick={() => scroll("left")}
-                            disabled={!canScrollLeft}
-                            className={`w-12 h-12 rounded-full liquid-glass-glow flex items-center justify-center text-[#0e1012] transition-all ${!canScrollLeft ? "opacity-30 cursor-not-allowed" : "hover:scale-110"}`}
-                            whileHover={canScrollLeft ? { scale: 1.1 } : {}}
-                            whileTap={canScrollLeft ? { scale: 0.95 } : {}}
+                            aria-label="Scroll left"
+                            className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-primary hover:border-primary hover:text-dark transition-all duration-300"
                         >
                             <ArrowLeft size={20} />
-                        </motion.button>
-                        <motion.button
+                        </button>
+                        <button
                             onClick={() => scroll("right")}
-                            disabled={!canScrollRight}
-                            className={`w-12 h-12 rounded-full liquid-glass-glow flex items-center justify-center text-[#0e1012] transition-all ${!canScrollRight ? "opacity-30 cursor-not-allowed" : "hover:scale-110"}`}
-                            whileHover={canScrollRight ? { scale: 1.1 } : {}}
-                            whileTap={canScrollRight ? { scale: 0.95 } : {}}
+                            aria-label="Scroll right"
+                            className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-primary hover:border-primary hover:text-dark transition-all duration-300"
                         >
                             <ArrowRight size={20} />
-                        </motion.button>
+                        </button>
                     </div>
                 </div>
 
                 {/* Carousel */}
                 <div
-                    ref={scrollContainerRef}
-                    onScroll={checkScroll}
-                    className="flex gap-6 md:gap-8 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0"
+                    ref={scrollRef}
+                    className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 scrollbar-hide"
                 >
-                    {caseStudies.map((study, index) => (
+                    {caseStudies.map((study) => (
                         <motion.div
-                            key={study.id}
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            key={study.title}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className="min-w-[85vw] md:min-w-[400px] lg:min-w-[480px] snap-center group relative"
+                            className="min-w-[85vw] md:min-w-[45vw] lg:min-w-[35vw] snap-start"
                         >
-                            <Link href={study.link} className="block">
-                                {/* Image container */}
-                                <div className="aspect-[4/3] rounded-2xl overflow-hidden mb-6 relative liquid-glass-glow">
-                                    <motion.div
-                                        className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                                        style={{
-                                            background: 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.4) 100%)'
-                                        }}
-                                    />
-
-                                    <motion.img
-                                        whileHover={{ scale: 1.05 }}
-                                        transition={{ duration: 0.5 }}
+                            <Link href={study.href} className="block group">
+                                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4">
+                                    <Image
                                         src={study.image}
                                         alt={study.title}
-                                        className="w-full h-full object-cover"
+                                        fill
+                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                        sizes="(max-width: 768px) 85vw, (max-width: 1024px) 45vw, 35vw"
                                     />
-
-                                    {/* Category badge */}
-                                    <div className="absolute top-4 left-4 z-20">
-                                        <span className="px-4 py-2 liquid-glass-glow rounded-full text-xs font-semibold text-[#0e1012] uppercase tracking-wider">
-                                            {study.category}
-                                        </span>
-                                    </div>
                                 </div>
-
-                                <h3 className="text-xl md:text-2xl font-bold text-[#0e1012] group-hover:text-gradient-liquid transition-colors mb-2">
+                                <span className="text-sm text-primary font-medium uppercase tracking-wider">
+                                    {study.category}
+                                </span>
+                                <h3 className="mt-2 text-xl font-semibold text-white group-hover:text-primary transition-colors">
                                     {study.title}
                                 </h3>
-                                <div className="flex items-center gap-4 text-gray-500">
-                                    <span className="text-[#00adef] font-medium">{study.stats}</span>
-                                    <span className="w-1 h-1 rounded-full bg-gray-300" />
-                                    <span className="flex items-center gap-1 hover:text-[#0e1012] transition-colors text-sm group-hover:text-[#00adef]">
-                                        Read Case Study <ArrowRight size={14} />
-                                    </span>
-                                </div>
                             </Link>
                         </motion.div>
                     ))}

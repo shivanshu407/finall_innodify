@@ -3,7 +3,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { PlatformsSection } from "@/components/PlatformsSection";
 import { CTASection } from "@/components/CTASection";
-import { DarkStats } from "@/components/DarkStats";
+import { LightStats } from "@/components/LightStats";
 import { DarkCaseStudiesSection } from "@/components/DarkCaseStudiesSection";
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <DarkStats />
+      <LightStats />
       <ServicesSection />
       <DarkCaseStudiesSection />
       <PlatformsSection />

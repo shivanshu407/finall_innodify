@@ -95,7 +95,7 @@ function LinkList({
                 <li key={link.name}>
                     <Link
                         href={link.href}
-                        className="text-gray-400 hover:text-[#00adef] transition-colors text-sm"
+                        className="text-gray-400 hover:text-primary transition-colors text-sm"
                     >
                         {link.name}
                     </Link>
@@ -107,11 +107,9 @@ function LinkList({
 
 export function Footer() {
     return (
-        <footer className="bg-[#0e1012] text-white pt-20 pb-10 overflow-hidden relative">
+        <footer className="bg-dark text-white pt-20 pb-10 overflow-hidden relative">
             {/* Background Elements */}
             <div className="absolute top-0 left-0 w-full h-px bg-white/10" />
-            <div className="absolute -top-40 -right-40 w-96 h-96 bg-[#00adef]/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
 
             <div className="container mx-auto px-6 relative z-10">
                 {/* CTA Section */}
@@ -124,14 +122,14 @@ export function Footer() {
                     >
                         <h2 className="text-4xl md:text-5xl font-serif mb-6">
                             Ready to transform your{" "}
-                            <span className="text-[#00adef] italic">
+                            <span className="text-primary italic">
                                 digital presence
                             </span>
                             ?
                         </h2>
                         <Link
                             href="/contact-us"
-                            className="inline-flex items-center gap-3 bg-[#00adef] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#0095d0] transition-colors shadow-lg shadow-[#00adef]/20 group"
+                            className="inline-flex items-center gap-3 bg-primary text-white px-8 py-4 rounded-full font-semibold hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20 group"
                         >
                             Start Your Project
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -161,9 +159,10 @@ export function Footer() {
                                 <input
                                     type="email"
                                     placeholder="Enter your email"
-                                    className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm w-full focus:outline-none focus:border-[#00adef] transition-colors"
+                                    aria-label="Email address for newsletter"
+                                    className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm w-full focus:outline-none focus:border-primary transition-colors"
                                 />
-                                <button className="bg-white/10 hover:bg-[#00adef] p-2 rounded-lg transition-colors">
+                                <button className="bg-white/10 hover:bg-primary p-2 rounded-lg transition-colors" aria-label="Subscribe">
                                     <ArrowRight className="w-4 h-4" />
                                 </button>
                             </div>
@@ -190,7 +189,7 @@ export function Footer() {
                         <ul className="space-y-6">
                             <li className="flex items-start gap-4">
                                 <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
-                                    <MapPin className="w-5 h-5 text-[#00adef]" />
+                                    <MapPin className="w-5 h-5 text-primary" />
                                 </div>
                                 <p className="text-sm text-gray-400">
                                     6th Floor, 602 Sundram Plus,
@@ -202,7 +201,7 @@ export function Footer() {
                             </li>
                             <li className="flex items-start gap-4">
                                 <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
-                                    <Phone className="w-5 h-5 text-[#00adef]" />
+                                    <Phone className="w-5 h-5 text-primary" />
                                 </div>
                                 <div>
                                     <p className="text-sm text-gray-400">
@@ -218,11 +217,11 @@ export function Footer() {
                             </li>
                             <li className="flex items-start gap-4">
                                 <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
-                                    <Mail className="w-5 h-5 text-[#00adef]" />
+                                    <Mail className="w-5 h-5 text-primary" />
                                 </div>
                                 <a
                                     href="mailto:support@innodify.co.in"
-                                    className="text-sm text-gray-400 hover:text-[#00adef] transition-colors"
+                                    className="text-sm text-gray-400 hover:text-primary transition-colors"
                                 >
                                     support@innodify.co.in
                                 </a>
@@ -253,9 +252,10 @@ export function Footer() {
                                 <input
                                     type="email"
                                     placeholder="Enter your email"
-                                    className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm w-full focus:outline-none focus:border-[#00adef] transition-colors"
+                                    aria-label="Email address for newsletter"
+                                    className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm w-full focus:outline-none focus:border-primary transition-colors"
                                 />
-                                <button className="bg-white/10 hover:bg-[#00adef] p-2 rounded-lg transition-colors">
+                                <button className="bg-white/10 hover:bg-primary p-2 rounded-lg transition-colors" aria-label="Subscribe">
                                     <ArrowRight className="w-4 h-4" />
                                 </button>
                             </div>
@@ -274,14 +274,14 @@ export function Footer() {
                     <FooterAccordion title="Contact Us">
                         <ul className="space-y-5">
                             <li className="flex items-start gap-3">
-                                <MapPin className="w-4 h-4 text-[#00adef] mt-0.5 shrink-0" />
+                                <MapPin className="w-4 h-4 text-primary mt-0.5 shrink-0" />
                                 <p className="text-sm text-gray-400">
                                     6th Floor, 602 Sundram Plus, Timaliyawad,
                                     Nanpura, Surat, Gujarat 395001
                                 </p>
                             </li>
                             <li className="flex items-start gap-3">
-                                <Phone className="w-4 h-4 text-[#00adef] mt-0.5 shrink-0" />
+                                <Phone className="w-4 h-4 text-primary mt-0.5 shrink-0" />
                                 <div>
                                     <p className="text-sm text-gray-400">
                                         +91 79843 71199
@@ -292,10 +292,10 @@ export function Footer() {
                                 </div>
                             </li>
                             <li className="flex items-start gap-3">
-                                <Mail className="w-4 h-4 text-[#00adef] mt-0.5 shrink-0" />
+                                <Mail className="w-4 h-4 text-primary mt-0.5 shrink-0" />
                                 <a
                                     href="mailto:support@innodify.co.in"
-                                    className="text-sm text-gray-400 hover:text-[#00adef]"
+                                    className="text-sm text-gray-400 hover:text-primary"
                                 >
                                     support@innodify.co.in
                                 </a>
@@ -321,7 +321,7 @@ export function Footer() {
                                 key={social.label}
                                 href={social.href}
                                 aria-label={social.label}
-                                className="text-gray-400 hover:text-[#00adef] transition-colors"
+                                className="text-gray-400 hover:text-primary transition-colors"
                             >
                                 <social.icon size={20} />
                             </a>

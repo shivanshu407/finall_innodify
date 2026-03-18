@@ -53,9 +53,9 @@ export function TabbedProcess() {
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center mb-16 max-w-3xl mx-auto">
-                    <span className="text-[#00adef] italic font-serif text-lg">Our Process</span>
-                    <h2 className="mt-4 text-3xl md:text-5xl font-serif text-[#0e1012]">
-                        From concept to <span className="text-[#00adef] italic">reality</span>
+                    <span className="text-primary italic font-serif text-lg">Our Process</span>
+                    <h2 className="mt-4 text-3xl md:text-5xl font-serif text-dark">
+                        From concept to <span className="text-primary italic">reality</span>
                     </h2>
                 </div>
 
@@ -67,17 +67,17 @@ export function TabbedProcess() {
                                 key={step.id}
                                 onClick={() => setActiveTab(step.id)}
                                 className={`w-full text-left p-6 rounded-xl transition-all duration-300 border border-transparent group ${activeTab === step.id
-                                    ? "bg-[#0e1012] text-white shadow-xl scale-105"
-                                    : "bg-white hover:bg-gray-50 hover:border-gray-200 text-[#0e1012]"
+                                    ? "bg-dark text-white shadow-xl scale-105"
+                                    : "bg-white hover:bg-gray-50 hover:border-gray-200 text-dark"
                                     }`}
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${activeTab === step.id ? "bg-[#00adef] text-[#0e1012]" : "bg-gray-100 text-gray-500 group-hover:bg-[#00adef]/20 group-hover:text-[#00adef]"
+                                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${activeTab === step.id ? "bg-primary text-dark" : "bg-gray-100 text-gray-500 group-hover:bg-primary/20 group-hover:text-primary"
                                         }`}>
                                         {step.icon}
                                     </div>
                                     <div>
-                                        <h3 className={`font-bold text-lg ${activeTab === step.id ? "text-white" : "text-[#0e1012]"}`}>
+                                        <h3 className={`font-bold text-lg ${activeTab === step.id ? "text-white" : "text-dark"}`}>
                                             {step.title}
                                         </h3>
                                         <p className={`text-sm mt-1 ${activeTab === step.id ? "text-gray-400" : "text-gray-500"}`}>
@@ -98,7 +98,7 @@ export function TabbedProcess() {
                                     key={step.id}
                                     onClick={() => setActiveTab(step.id)}
                                     className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold transition-all ${activeTab === step.id
-                                        ? "bg-[#00adef] text-white shadow-lg scale-110"
+                                        ? "bg-primary text-white shadow-lg scale-110"
                                         : "bg-white/80 text-gray-600 hover:bg-white"
                                         }`}
                                 >
@@ -137,11 +137,11 @@ export function TabbedProcess() {
                                             exit={{ opacity: 0, x: -20 }}
                                             transition={{ duration: 0.4 }}
                                         >
-                                            <div className="w-16 h-16 rounded-2xl bg-[#00adef] flex items-center justify-center text-[#0e1012] mb-8 shadow-lg rotate-3 hover:rotate-6 transition-transform">
+                                            <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center text-dark mb-8 shadow-lg rotate-3 hover:rotate-6 transition-transform">
                                                 {step.icon}
                                             </div>
 
-                                            <h3 className="text-3xl md:text-4xl font-bold text-[#0e1012] mb-6">
+                                            <h3 className="text-3xl md:text-4xl font-bold text-dark mb-6">
                                                 {step.title}
                                             </h3>
 
@@ -158,8 +158,8 @@ export function TabbedProcess() {
                                                         transition={{ delay: 0.2 + (i * 0.1) }}
                                                         className="flex items-center gap-3 bg-white p-4 rounded-lg shadow-sm"
                                                     >
-                                                        <div className="w-2 h-2 rounded-full bg-[#00adef]" />
-                                                        <span className="font-medium text-[#0e1012]">{point}</span>
+                                                        <div className="w-2 h-2 rounded-full bg-primary" />
+                                                        <span className="font-medium text-dark">{point}</span>
                                                     </motion.div>
                                                 ))}
                                             </div>

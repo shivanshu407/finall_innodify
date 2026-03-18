@@ -4,6 +4,14 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   reactCompiler: true,
   poweredByHeader: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
+  },
   async headers() {
     return [
       {

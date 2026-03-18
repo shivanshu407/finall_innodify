@@ -1,16 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, CheckCircle2, ShoppingCart, CreditCard, Truck, Gem, Shield, Zap, ArrowRight } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ShoppingCart, CreditCard, Truck, Gem, Shield, Zap } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import { NextCaseStudy, CaseStudyCTA } from "@/components/CaseStudyShared";
 
 export default function DKhushalbhaiJewellersCaseStudy() {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
-            <section className="bg-[#0e1012] pt-32 pb-20 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1600&q=80')] bg-cover bg-center opacity-20" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0e1012] via-[#0e1012]/80 to-transparent" />
+            <section className="bg-dark pt-32 pb-20 relative overflow-hidden">
+                <Image src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1600&q=80" alt="" fill className="object-cover opacity-20" priority />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/80 to-transparent" />
 
                 <div className="container mx-auto px-6 relative z-10">
                     <Link
@@ -73,7 +75,7 @@ export default function DKhushalbhaiJewellersCaseStudy() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                         >
-                            <h2 className="text-2xl font-bold text-[#0e1012] mb-4">About Client</h2>
+                            <h2 className="text-2xl font-bold text-dark mb-4">About Client</h2>
                             <p className="text-gray-600 leading-relaxed mb-8">
                                 D Khushalbhai Jewellers is a trusted name in the jewellery industry, known for their exquisite collection of real gold jewellery, diamond jewellery, and silver jewellery. With decades of experience in traditional retail, they sought to expand their reach through a modern digital storefront while maintaining the premium experience their customers expect.
                             </p>
@@ -90,7 +92,7 @@ export default function DKhushalbhaiJewellersCaseStudy() {
                             viewport={{ once: true }}
                             className="bg-gray-50 rounded-2xl p-8 border border-gray-100"
                         >
-                            <h2 className="text-2xl font-bold text-[#0e1012] mb-6">The Requirements</h2>
+                            <h2 className="text-2xl font-bold text-dark mb-6">The Requirements</h2>
                             <ul className="space-y-4">
                                 <li className="flex gap-3">
                                     <div className="mt-1 w-6 h-6 bg-[#D4AF37]/20 rounded-full flex items-center justify-center flex-shrink-0">
@@ -126,7 +128,7 @@ export default function DKhushalbhaiJewellersCaseStudy() {
             </section>
 
             {/* Solution Section */}
-            <section className="py-20 bg-[#0e1012] text-white">
+            <section className="py-20 bg-dark text-white">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -203,7 +205,7 @@ export default function DKhushalbhaiJewellersCaseStudy() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                         >
-                            <h2 className="text-3xl md:text-4xl font-serif text-[#0e1012] mb-8">
+                            <h2 className="text-3xl md:text-4xl font-serif text-dark mb-8">
                                 Delivered <span className="text-[#D4AF37] italic">Results</span>
                             </h2>
                             <div className="space-y-6">
@@ -212,7 +214,7 @@ export default function DKhushalbhaiJewellersCaseStudy() {
                                         <Shield className="text-green-600" />
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-[#0e1012]">Complete Digital Presence</h3>
+                                        <h3 className="text-xl font-bold text-dark">Complete Digital Presence</h3>
                                         <p className="text-gray-600">Full-fledged online store showcasing their entire jewellery collection with professional imagery.</p>
                                     </div>
                                 </div>
@@ -221,7 +223,7 @@ export default function DKhushalbhaiJewellersCaseStudy() {
                                         <CreditCard className="text-blue-600" />
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-[#0e1012]">Secure Payment Processing</h3>
+                                        <h3 className="text-xl font-bold text-dark">Secure Payment Processing</h3>
                                         <p className="text-gray-600">Multiple payment gateway options enabling safe transactions for high-value jewellery purchases.</p>
                                     </div>
                                 </div>
@@ -230,7 +232,7 @@ export default function DKhushalbhaiJewellersCaseStudy() {
                                         <Zap className="text-purple-600" />
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-[#0e1012]">Nationwide Delivery</h3>
+                                        <h3 className="text-xl font-bold text-dark">Nationwide Delivery</h3>
                                         <p className="text-gray-600">Integrated delivery partners ensuring safe, insured shipping across India.</p>
                                     </div>
                                 </div>
@@ -241,7 +243,7 @@ export default function DKhushalbhaiJewellersCaseStudy() {
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="bg-[#0e1012] rounded-3xl p-10 relative overflow-hidden"
+                            className="bg-dark rounded-3xl p-10 relative overflow-hidden"
                         >
                             <div className="absolute top-0 right-0 p-8 opacity-10">
                                 <span className="text-9xl font-serif text-white">"</span>
@@ -265,21 +267,13 @@ export default function DKhushalbhaiJewellersCaseStudy() {
                 </div>
             </section>
 
-            {/* Bottom CTA */}
-            <section className="py-20 bg-gray-50 border-t border-gray-200">
-                <div className="container mx-auto px-6 text-center">
-                    <h2 className="text-3xl font-serif text-[#0e1012] mb-6">
-                        Ready to take your business online?
-                    </h2>
-                    <Link
-                        href="/contact-us"
-                        className="inline-flex items-center gap-2 bg-[#00adef] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#0090c9] transition-colors"
-                    >
-                        Start Your Project
-                        <ArrowRight size={20} />
-                    </Link>
-                </div>
-            </section>
+            <NextCaseStudy
+                title="Cloud-Based Transformation of Real Estate Operations"
+                client="Mahalaxmi Group"
+                image="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80"
+                link="/case-studies/mahalaxmi-real-estate"
+            />
+            <CaseStudyCTA heading="Ready to take your business online?" />
         </div>
     );
 }
