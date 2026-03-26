@@ -109,6 +109,7 @@ export function DarkCaseStudiesSection() {
                                         src={study.image}
                                         alt={study.title}
                                         fill
+                                        unoptimized
                                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                                         sizes="(max-width: 768px) 85vw, (max-width: 1024px) 45vw, 35vw"
                                     />

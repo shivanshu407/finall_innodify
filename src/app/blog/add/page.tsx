@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, Save, Upload, Trash2, Search, Bold, List, Type, Heading3, Heading4, Image as ImageIcon, Link as LinkIcon, Eye, Edit3, Search as SearchIcon, Settings, Lock } from "lucide-react";
+import { ArrowLeft, Save, Upload, Trash2, Search, Bold, List, Type, Heading2, Heading3, Heading4, Image as ImageIcon, Link as LinkIcon, Eye, Edit3, Search as SearchIcon, Settings, Lock, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { BlogPost, defaultBlogs } from "@/data/blogs";
+import { BlogPost } from "@/data/blogs";
+import { fetchBlogs } from "@/lib/api";
 import { addBlog, deleteBlog, updateBlog } from "@/actions/blogActions";
 import BlogContentRenderer from "@/components/BlogContentRenderer";
 
@@ -43,6 +44,7 @@ export default function AddBlogPage() {
     const [searchQuery, setSearchQuery] = useState("");
     const [activeTab, setActiveTab] = useState<EditorTab>("content");
     const [viewMode, setViewMode] = useState<ViewMode>("split");
+    const [uploading, setUploading] = useState(false);
     const [formData, setFormData] = useState<Partial<BlogPost>>({
         author: "Innodify Admin",
         date: new Date().toLocaleDateString("en-US", {
@@ -66,9 +68,15 @@ export default function AddBlogPage() {
         setFormData((prev) => ({ ...prev, keywords }));
     };
 
+    const [blogs, setBlogs] = useState<BlogPost[]>([]);
+    
+    useEffect(() => {
+        fetchBlogs().then(setBlogs);
+    }, []);
+
     const filteredBlogs = searchQuery.length >= 2
-        ? defaultBlogs.filter(post => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
-        : defaultBlogs;
+        ? blogs.filter(post => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
+        : blogs;
 
     const handleEdit = (post: BlogPost) => {
         setFormData(post);
@@ -86,6 +94,7 @@ export default function AddBlogPage() {
         const before = text.substring(0, start);
         const after = text.substring(end, text.length);
         const selected = text.substring(start, end);
+        const currentScrollTop = textarea.scrollTop;
 
         const newText = before + prefix + selected + suffix + after;
 
@@ -97,8 +106,69 @@ export default function AddBlogPage() {
                 start + prefix.length,
                 start + prefix.length + selected.length
             );
+            textarea.scrollTop = currentScrollTop;
         }, 0);
     };
+
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setUploading(true);
+        const formData = new FormData();
+        formData.append("file", file);
+
+        try {
+            const response = await fetch("/api/upload", {
+                method: "POST",
+                body: formData,
+            });
+
+            const data = await response.json();
+
+            if (data.url) {
+                setFormData((prev) => ({ ...prev, image: data.url }));
+            } else {
+                alert("Upload failed: " + (data.error || "Unknown error"));
+            }
+        } catch (error) {
+            console.error("Upload error:", error);
+            alert("Upload failed. Please try again.");
+        } finally {
+            setUploading(false);
+        }
+    };
+
+    const handleMarkdownImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        
+        const alt = prompt("Enter image description (alt text):") || "";
+        
+        const formData = new FormData();
+        formData.append("file", file);
+        
+        try {
+            const response = await fetch("/api/upload", {
+                method: "POST",
+                body: formData,
+            });
+            const data = await response.json();
+            
+            if (data.url) {
+                insertFormatting(`![${alt}](${data.url})`);
+            } else {
+                alert("Upload failed: " + (data.error || "Unknown error"));
+            }
+        } catch (error) {
+            console.error("Upload error:", error);
+            alert("Upload failed.");
+        }
+        
+        // Reset file input
+        e.target.value = "";
+    };
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -125,6 +195,7 @@ export default function AddBlogPage() {
             image:
                 formData.image ||
                 "https://images.unsplash.com/photo-1499750310159-5254f4121c6d?w=600&q=80",
+            imageAlt: formData.imageAlt,
             // SEO fields
             metaTitle: formData.metaTitle,
             metaDescription: formData.metaDescription,
@@ -418,27 +489,78 @@ export default function AddBlogPage() {
                                                 />
                                             </div>
 
-                                            {/* Image URL */}
+                                            {/* Featured Image */}
                                             <div>
                                                 <label className="block text-sm font-medium text-[#b6bcc6] mb-2">
-                                                    Featured Image URL
+                                                    Featured Image
                                                 </label>
-                                                <div className="flex gap-2">
-                                                    <input
-                                                        type="url"
-                                                        name="image"
-                                                        value={formData.image || ""}
-                                                        placeholder="https://example.com/image.jpg"
-                                                        onChange={handleChange}
-                                                        className="flex-1 px-4 py-3 rounded-lg bg-[#15181c] text-[#e5e7eb]
-                                                            placeholder:text-[#6b7280] border border-[#2a2f36]
-                                                            focus:border-[#00adef] focus:ring-2 focus:ring-[#00adef]/30
-                                                            outline-none transition-all"
-                                                    />
-                                                    <div className="px-4 py-3 bg-[#15181c] rounded-lg border border-[#2a2f36] text-[#6b7280]">
-                                                        <Upload size={20} />
+                                                {formData.image ? (
+                                                    <div className="relative group rounded-xl overflow-hidden border border-[#2a2f36] bg-[#15181c]">
+                                                        <img
+                                                            src={formData.image}
+                                                            alt="Featured"
+                                                            className="w-full h-48 object-cover"
+                                                        />
+                                                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+                                                            <label className="px-4 py-2 bg-[#00adef] text-[#0e1012] rounded-lg cursor-pointer font-medium text-sm hover:bg-[#00adef]/90 transition-all flex items-center gap-2">
+                                                                <Upload size={16} />
+                                                                {uploading ? "Uploading..." : "Replace"}
+                                                                <input
+                                                                    type="file"
+                                                                    accept="image/*"
+                                                                    onChange={handleImageUpload}
+                                                                    disabled={uploading}
+                                                                    className="hidden"
+                                                                />
+                                                            </label>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => setFormData(prev => ({ ...prev, image: "" }))}
+                                                                className="px-4 py-2 bg-red-500/80 text-white rounded-lg font-medium text-sm hover:bg-red-500 transition-all flex items-center gap-2"
+                                                            >
+                                                                <X size={16} />
+                                                                Remove
+                                                            </button>
+                                                        </div>
+                                                        {uploading && (
+                                                            <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                                                                <div className="w-8 h-8 border-3 border-[#00adef] border-t-transparent rounded-full animate-spin" />
+                                                            </div>
+                                                        )}
                                                     </div>
-                                                </div>
+                                                ) : (
+                                                    <label className="flex flex-col items-center justify-center w-full h-48 rounded-xl border-2 border-dashed border-[#2a2f36] bg-[#15181c] hover:border-[#00adef]/50 hover:bg-[#15181c]/80 transition-all cursor-pointer group">
+                                                        {uploading ? (
+                                                            <div className="w-8 h-8 border-3 border-[#00adef] border-t-transparent rounded-full animate-spin" />
+                                                        ) : (
+                                                            <>
+                                                                <div className="w-12 h-12 rounded-full bg-[#00adef]/10 flex items-center justify-center mb-3 group-hover:bg-[#00adef]/20 transition-all">
+                                                                    <Upload className="text-[#00adef]" size={22} />
+                                                                </div>
+                                                                <p className="text-sm text-[#9ca3af] font-medium">Click to upload featured image</p>
+                                                                <p className="text-xs text-[#6b7280] mt-1">PNG, JPG, WEBP up to 10MB</p>
+                                                            </>
+                                                        )}
+                                                        <input
+                                                            type="file"
+                                                            accept="image/*"
+                                                            onChange={handleImageUpload}
+                                                            disabled={uploading}
+                                                            className="hidden"
+                                                        />
+                                                    </label>
+                                                )}
+                                                <input
+                                                    type="text"
+                                                    name="imageAlt"
+                                                    value={formData.imageAlt || ""}
+                                                    placeholder="Enter alt text for the featured image (e.g. A laptop working on code)"
+                                                    onChange={handleChange}
+                                                    className="w-full mt-3 px-4 py-3 rounded-lg bg-[#15181c] text-[#e5e7eb]
+                                                        placeholder:text-[#6b7280] border border-[#2a2f36]
+                                                        focus:border-[#00adef] focus:ring-2 focus:ring-[#00adef]/30
+                                                        outline-none transition-all"
+                                                />
                                             </div>
 
                                             {/* Content Editor */}
@@ -450,9 +572,17 @@ export default function AddBlogPage() {
                                                     <div className="flex items-center gap-1 bg-[#15181c] p-1 rounded-md border border-[#2a2f36]">
                                                         <button
                                                             type="button"
+                                                            onClick={() => insertFormatting("## ")}
+                                                            className="p-1.5 hover:bg-[#2a2f36] rounded text-[#9ca3af] hover:text-[#00adef] transition-all"
+                                                            title="Heading 2 (H2)"
+                                                        >
+                                                            <Heading2 size={16} />
+                                                        </button>
+                                                        <button
+                                                            type="button"
                                                             onClick={() => insertFormatting("### ")}
                                                             className="p-1.5 hover:bg-[#2a2f36] rounded text-[#9ca3af] hover:text-[#00adef] transition-all"
-                                                            title="Heading 1"
+                                                            title="Heading 3 (H3)"
                                                         >
                                                             <Heading3 size={16} />
                                                         </button>
@@ -460,7 +590,7 @@ export default function AddBlogPage() {
                                                             type="button"
                                                             onClick={() => insertFormatting("#### ")}
                                                             className="p-1.5 hover:bg-[#2a2f36] rounded text-[#9ca3af] hover:text-[#00adef] transition-all"
-                                                            title="Heading 2"
+                                                            title="Heading 4 (H4)"
                                                         >
                                                             <Heading4 size={16} />
                                                         </button>
@@ -481,27 +611,24 @@ export default function AddBlogPage() {
                                                         >
                                                             <List size={16} />
                                                         </button>
-                                                        <button
-                                                            type="button"
-                                                            onClick={() => {
-                                                                const url = prompt("Enter image URL:");
-                                                                const alt = prompt("Enter image description (alt text):");
-                                                                if (url) {
-                                                                    insertFormatting(`![${alt || ""}](${url})`);
-                                                                }
-                                                            }}
-                                                            className="p-1.5 hover:bg-[#2a2f36] rounded text-[#9ca3af] hover:text-[#00adef] transition-all"
-                                                            title="Insert Image"
+                                                        <label 
+                                                            className="p-1.5 hover:bg-[#2a2f36] rounded text-[#9ca3af] hover:text-[#00adef] transition-all cursor-pointer flex items-center justify-center" 
+                                                            title="Upload Image"
                                                         >
                                                             <ImageIcon size={16} />
-                                                        </button>
+                                                            <input 
+                                                                type="file" 
+                                                                accept="image/*" 
+                                                                onChange={handleMarkdownImageUpload}
+                                                                className="hidden" 
+                                                            />
+                                                        </label>
                                                         <button
                                                             type="button"
                                                             onClick={() => {
-                                                                const text = prompt("Enter link text:");
                                                                 const url = prompt("Enter URL (e.g. /services or https://google.com):");
-                                                                if (text && url) {
-                                                                    insertFormatting(`[${text}](${url})`);
+                                                                if (url) {
+                                                                    insertFormatting("[", `](${url})`);
                                                                 }
                                                             }}
                                                             className="p-1.5 hover:bg-[#2a2f36] rounded text-[#9ca3af] hover:text-[#00adef] transition-all"
@@ -525,7 +652,7 @@ export default function AddBlogPage() {
                                                 />
                                                 <p className="text-[10px] text-[#4b5563] mt-2 flex items-center gap-1">
                                                     <Type size={10} />
-                                                    Markdown: ### Header, **Bold**, - Bullet, ![Alt](URL) Image, [Text](URL) Link
+                                                    Markdown: ## H2, ### H3, #### H4, **Bold**, - Bullet, ![Alt](URL) Image, [Text](URL) Link
                                                 </p>
                                             </div>
                                         </>

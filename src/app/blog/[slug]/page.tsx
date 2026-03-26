@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { defaultBlogs } from "@/data/blogs";
+import { fetchBlogBySlug, fetchBlogs } from "@/lib/api";
 import BlogPostContent from "./BlogPostContent";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
+import { notFound } from "next/navigation";
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -9,7 +10,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
-    const post = defaultBlogs.find((b) => b.slug === slug);
+    const post = await fetchBlogBySlug(slug);
 
     if (!post) {
         return { title: "Post Not Found" };
@@ -30,12 +31,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-    return defaultBlogs.map((post) => ({ slug: post.slug }));
+    try {
+        const blogs = await fetchBlogs();
+        return blogs.map((post) => ({ slug: post.slug }));
+    } catch {
+        return [];
+    }
 }
 
 export default async function BlogPostPage({ params }: Props) {
     const { slug } = await params;
-    const post = defaultBlogs.find((b) => b.slug === slug);
+    const post = await fetchBlogBySlug(slug);
+
+    if (!post) {
+        notFound();
+    }
+
+    const allBlogs = await fetchBlogs();
+    const recommendedPosts = allBlogs
+        .filter((b) => b.slug !== slug)
+        .sort((a, b) => {
+            if (a.category === post.category && b.category !== post.category) return -1;
+            if (a.category !== post.category && b.category === post.category) return 1;
+            return 0;
+        })
+        .slice(0, 3);
 
     return (
         <>
@@ -46,7 +66,7 @@ export default async function BlogPostPage({ params }: Props) {
                     { name: post?.title || "Post", url: `https://innodify.in/blog/${slug}` },
                 ]}
             />
-            <BlogPostContent />
+            <BlogPostContent post={post} recommendedPosts={recommendedPosts} />
         </>
     );
 }

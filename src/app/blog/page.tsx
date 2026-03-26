@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BlogContent from "./BlogContent";
+import { fetchBlogs } from "@/lib/api";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
@@ -14,7 +15,9 @@ export const metadata: Metadata = {
     },
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+    const blogs = await fetchBlogs();
+
     return (
         <>
             <BreadcrumbJsonLd
@@ -23,7 +26,7 @@ export default function BlogPage() {
                     { name: "Blog", url: "https://innodify.in/blog" },
                 ]}
             />
-            <BlogContent />
+            <BlogContent initialPosts={blogs} />
         </>
     );
 }

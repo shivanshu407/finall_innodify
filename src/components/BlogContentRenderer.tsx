@@ -2,6 +2,30 @@
 
 import Link from "next/link";
 
+export function slugify(text: string) {
+    return text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+}
+
+export function extractHeadings(content: string) {
+    const lines = content.split('\n');
+    const headings: { id: string; text: string; level: number }[] = [];
+    
+    lines.forEach((line) => {
+        if (line.startsWith('#### ')) {
+            const text = line.replace('#### ', '');
+            headings.push({ id: slugify(text), text, level: 4 });
+        } else if (line.startsWith('### ')) {
+            const text = line.replace('### ', '');
+            headings.push({ id: slugify(text), text, level: 3 });
+        } else if (line.startsWith('## ')) {
+            const text = line.replace('## ', '');
+            headings.push({ id: slugify(text), text, level: 2 });
+        }
+    });
+    
+    return headings;
+}
+
 interface BlogContentRendererProps {
     content: string;
     className?: string;
@@ -9,7 +33,7 @@ interface BlogContentRendererProps {
 
 /**
  * Reusable component for rendering blog content with markdown-like syntax.
- * Supports: ### headers, #### subheaders, **bold**, [links](url), ![images](url), - bullet lists
+ * Updated for the dark-themed redesign with heading IDs for standard scroll-spying TOCs.
  */
 export default function BlogContentRenderer({ content, className = "" }: BlogContentRendererProps) {
     const renderText = (text: string) => {
@@ -37,7 +61,7 @@ export default function BlogContentRenderer({ content, className = "" }: BlogCon
                             href={url}
                             target={isExternal ? "_blank" : undefined}
                             rel={isExternal ? "noopener noreferrer" : undefined}
-                            className="text-[#00adef] hover:underline transition-all"
+                            className="text-[#00adef] font-medium hover:underline transition-all"
                         >
                             {label}
                         </Link>
@@ -54,28 +78,39 @@ export default function BlogContentRenderer({ content, className = "" }: BlogCon
         <div className={`prose prose-invert prose-lg max-w-none ${className}`}>
             <div className="text-[#d1d5db] leading-relaxed font-sans space-y-4">
                 {lines.map((line, i) => {
-                    // H3 Headers
-                    if (line.startsWith('### ')) {
+                    // H4 Headers (check before H3 since #### starts with ###)
+                    if (line.startsWith('#### ')) {
+                        const rawText = line.replace('#### ', '');
                         return (
-                            <h3 key={i} className="text-2xl font-serif text-white mt-8 mb-4">
-                                {line.replace('### ', '')}
+                            <h4 id={slugify(rawText)} key={i} className="text-xl font-serif text-[#e5e7eb] mt-8 mb-3 scroll-mt-24">
+                                {rawText}
+                            </h4>
+                        );
+                    }
+                    // H3 Headers (check before H2 since ### starts with ##)
+                    if (line.startsWith('### ')) {
+                        const rawText = line.replace('### ', '');
+                        return (
+                            <h3 id={slugify(rawText)} key={i} className="text-2xl font-serif text-white mt-10 mb-4 scroll-mt-24">
+                                {rawText}
                             </h3>
                         );
                     }
-                    // H4 Headers
-                    if (line.startsWith('#### ')) {
+                    // H2 Headers
+                    if (line.startsWith('## ')) {
+                        const rawText = line.replace('## ', '');
                         return (
-                            <h4 key={i} className="text-xl font-serif text-white mt-6 mb-3">
-                                {line.replace('#### ', '')}
-                            </h4>
+                            <h2 id={slugify(rawText)} key={i} className="text-3xl font-serif text-white mt-12 mb-5 scroll-mt-24">
+                                {rawText}
+                            </h2>
                         );
                     }
                     // Bullet points
                     if (line.startsWith('- ')) {
                         return (
                             <div key={i} className="flex gap-3 ml-4">
-                                <span className="text-[#00adef]">•</span>
-                                <p>{renderText(line.replace('- ', ''))}</p>
+                                <span className="text-[#00adef] font-bold">•</span>
+                                <p className="text-[#d1d5db]">{renderText(line.replace('- ', ''))}</p>
                             </div>
                         );
                     }
@@ -103,10 +138,10 @@ export default function BlogContentRenderer({ content, className = "" }: BlogCon
                     }
                     // Empty lines
                     if (line.trim() === '') {
-                        return <div key={i} className="h-2" />;
+                        return <div key={i} className="h-4" />;
                     }
                     // Regular paragraphs
-                    return <p key={i}>{renderText(line)}</p>;
+                    return <p key={i} className="text-[#d1d5db]">{renderText(line)}</p>;
                 })}
             </div>
         </div>

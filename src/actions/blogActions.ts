@@ -1,122 +1,76 @@
 'use server';
 
-import fs from 'fs/promises';
-import path from 'path';
 import { BlogPost } from '@/data/blogs';
+import { revalidatePath } from 'next/cache';
+
+const API_URL = process.env.INTERNAL_API_URL || 'http://127.0.0.1:5000';
 
 export async function addBlog(newBlog: BlogPost) {
     try {
-        const filePath = path.join(process.cwd(), 'src/data/blogs.ts');
-        const fileContent = await fs.readFile(filePath, 'utf-8');
-
-        // Find the end of the array
-        const arrayEndIndex = fileContent.lastIndexOf('];');
-
-        if (arrayEndIndex === -1) {
-            throw new Error('Could not find the end of the blogs array.');
-        }
-
-        // Format the new blog object as a string
-        // We use JSON.stringify but then remove the outer braces to insert it cleanly if needed,
-        // or just rely on the fact that valid JSON object syntax is valid JS object syntax (mostly).
-        const blogString = JSON.stringify(newBlog, null, 4);
-
-        // check if there are other items to add a comma
-        const insertContent = `    ${blogString},\n`;
-
-        const newContent = fileContent.slice(0, arrayEndIndex) + insertContent + fileContent.slice(arrayEndIndex);
-
-        await fs.writeFile(filePath, newContent, 'utf-8');
-        return { success: true };
-    } catch (error) {
-        console.error('Failed to add blog:', error);
-        return { success: false, error: 'Failed to save blog to file.' };
-    }
-}
-export async function deleteBlog(slug: string) {
-    try {
-        const filePath = path.join(process.cwd(), 'src/data/blogs.ts');
-        const fileContent = await fs.readFile(filePath, 'utf-8');
-
-        const arrayStartMarker = 'export const defaultBlogs: BlogPost[] = [';
-        const arrayEndMarker = '];';
-
-        const startIndex = fileContent.indexOf(arrayStartMarker);
-        const endIndex = fileContent.lastIndexOf(arrayEndMarker);
-
-        if (startIndex === -1 || endIndex === -1) {
-            throw new Error('Could not find the blogs array in the file.');
-        }
-
-        const beforeArray = fileContent.slice(0, startIndex + arrayStartMarker.length);
-        const afterArray = fileContent.slice(endIndex);
-        const arrayContent = fileContent.slice(startIndex + arrayStartMarker.length, endIndex);
-
-        // Regex to match individual blog objects in the array
-        const regex = /\{[\s\S]*?\}\s*(?=,|\s*\])/g;
-        const matches = arrayContent.match(regex) || [];
-
-        const keptMatches = matches.filter(match => {
-            // Match by slug
-            const slugMatch = match.match(/"slug":\s*"([^"]+)"/) ||
-                match.match(/'slug':\s*'([^']+)'/) ||
-                match.match(/slug:\s*"([^"]+)"/) ||
-                match.match(/slug:\s*'([^']+)'/);
-            return slugMatch ? slugMatch[1] !== slug : true;
+        const response = await fetch(`${API_URL}/api/blogs`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newBlog),
         });
 
-        const newArrayContent = '\n' + keptMatches.join(',\n') + (keptMatches.length > 0 ? ',\n' : '\n');
-        const newFileContent = beforeArray + newArrayContent + afterArray;
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+        }
 
-        await fs.writeFile(filePath, newFileContent, 'utf-8');
+        revalidatePath('/blog');
         return { success: true };
-    } catch (error) {
+    } catch (error: any) {
+        console.error('Failed to add blog:', error);
+        return { success: false, error: error.message || 'Failed to save blog to database.' };
+    }
+}
+
+export async function deleteBlog(slug: string) {
+    try {
+        const response = await fetch(`${API_URL}/api/blogs/${slug}`, {
+            method: 'DELETE',
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+        }
+
+        revalidatePath('/blog');
+        return { success: true };
+    } catch (error: any) {
         console.error('Failed to delete blog:', error);
-        return { success: false, error: 'Failed to delete blog from file.' };
+        return { success: false, error: error.message || 'Failed to delete blog from database.' };
     }
 }
 
 export async function updateBlog(oldSlug: string, updatedBlog: BlogPost) {
     try {
-        const filePath = path.join(process.cwd(), 'src/data/blogs.ts');
-        const fileContent = await fs.readFile(filePath, 'utf-8');
-
-        const arrayStartMarker = 'export const defaultBlogs: BlogPost[] = [';
-        const arrayEndMarker = '];';
-
-        const startIndex = fileContent.indexOf(arrayStartMarker);
-        const endIndex = fileContent.lastIndexOf(arrayEndMarker);
-
-        if (startIndex === -1 || endIndex === -1) {
-            throw new Error('Could not find the blogs array in the file.');
-        }
-
-        const beforeArray = fileContent.slice(0, startIndex + arrayStartMarker.length);
-        const afterArray = fileContent.slice(endIndex);
-        const arrayContent = fileContent.slice(startIndex + arrayStartMarker.length, endIndex);
-
-        const regex = /\{[\s\S]*?\}\s*(?=,|\s*\])/g;
-        const matches = arrayContent.match(regex) || [];
-
-        const updatedMatches = matches.map(match => {
-            const slugMatch = match.match(/"slug":\s*"([^"]+)"/) ||
-                match.match(/'slug':\s*'([^']+)'/) ||
-                match.match(/slug:\s*"([^"]+)"/) ||
-                match.match(/slug:\s*'([^']+)'/);
-
-            if (slugMatch && slugMatch[1] === oldSlug) {
-                return JSON.stringify(updatedBlog, null, 4);
-            }
-            return match;
+        const response = await fetch(`${API_URL}/api/blogs/${oldSlug}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedBlog),
         });
 
-        const newArrayContent = '\n' + updatedMatches.join(',\n') + (updatedMatches.length > 0 ? ',\n' : '\n');
-        const newFileContent = beforeArray + newArrayContent + afterArray;
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+        }
 
-        await fs.writeFile(filePath, newFileContent, 'utf-8');
+        revalidatePath('/blog');
+        revalidatePath(`/blog/${oldSlug}`);
+        if (updatedBlog.slug && updatedBlog.slug !== oldSlug) {
+            revalidatePath(`/blog/${updatedBlog.slug}`);
+        }
+        
         return { success: true };
-    } catch (error) {
+    } catch (error: any) {
         console.error('Failed to update blog:', error);
-        return { success: false, error: 'Failed to update blog in file.' };
+        return { success: false, error: error.message || 'Failed to update blog in database.' };
     }
 }
