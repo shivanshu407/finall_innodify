@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import BlogContent from "./BlogContent";
-import { fetchBlogs } from "@/lib/api";
+import { getBlogs } from "@/lib/server-api";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-    const blogs = await fetchBlogs();
+    const blogs = await getBlogs();
 
     return (
         <>
