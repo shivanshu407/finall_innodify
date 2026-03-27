@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { fetchBlogBySlug, fetchBlogs } from "@/lib/api";
+import { getBlogBySlug, getBlogs } from "@/lib/server-api";
 import BlogPostContent from "./BlogPostContent";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { notFound } from "next/navigation";
@@ -10,7 +10,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
-    const post = await fetchBlogBySlug(slug);
+    const post = await getBlogBySlug(slug);
 
     if (!post) {
         return { title: "Post Not Found" };
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export async function generateStaticParams() {
     try {
-        const blogs = await fetchBlogs();
+        const blogs = await getBlogs();
         return blogs.map((post) => ({ slug: post.slug }));
     } catch {
         return [];
@@ -41,13 +41,13 @@ export async function generateStaticParams() {
 
 export default async function BlogPostPage({ params }: Props) {
     const { slug } = await params;
-    const post = await fetchBlogBySlug(slug);
+    const post = await getBlogBySlug(slug);
 
     if (!post) {
         notFound();
     }
 
-    const allBlogs = await fetchBlogs();
+    const allBlogs = await getBlogs();
     const recommendedPosts = allBlogs
         .filter((b) => b.slug !== slug)
         .sort((a, b) => {
