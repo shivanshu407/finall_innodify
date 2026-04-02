@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
 import Blog from '@/models/Blog';
+import { sanitizeString, sanitizeUpdateData } from '@/lib/validation';
 
 export const dynamic = "force-dynamic";
 
@@ -10,8 +11,12 @@ export async function GET(
 ) {
   try {
     const { slug } = await params;
+
+    // Sanitize slug to prevent NoSQL injection
+    const sanitizedSlug = sanitizeString(slug);
+
     await connectDB();
-    const blog = await Blog.findOne({ slug });
+    const blog = await Blog.findOne({ slug: sanitizedSlug });
 
     if (!blog) {
       return NextResponse.json({ error: 'Blog not found' }, { status: 404 });
@@ -30,8 +35,12 @@ export async function PUT(
 ) {
   try {
     const { slug } = await params;
+
+    // Sanitize slug to prevent NoSQL injection
+    const sanitizedSlug = sanitizeString(slug);
+
     await connectDB();
-    const blog = await Blog.findOne({ slug });
+    const blog = await Blog.findOne({ slug: sanitizedSlug });
 
     if (!blog) {
       return NextResponse.json({ error: 'Blog not found' }, { status: 404 });
@@ -39,17 +48,20 @@ export async function PUT(
 
     const body = await request.json();
 
+    // Sanitize update data to prevent NoSQL injection
+    const sanitizedBody = sanitizeUpdateData(body);
+
     // If title changed, regenerate slug
-    if (body.title && body.title !== blog.title) {
-      body.slug = body.title
+    if (sanitizedBody.title && typeof sanitizedBody.title === 'string' && sanitizedBody.title !== blog.title) {
+      sanitizedBody.slug = sanitizedBody.title
         .toLowerCase()
         .replace(/[^\w\s-]/g, '')
         .replace(/\s+/g, '-');
     }
 
     const updatedBlog = await Blog.findOneAndUpdate(
-      { slug },
-      body,
+      { slug: sanitizedSlug },
+      sanitizedBody,
       { new: true, runValidators: true }
     );
 
@@ -66,8 +78,12 @@ export async function DELETE(
 ) {
   try {
     const { slug } = await params;
+
+    // Sanitize slug to prevent NoSQL injection
+    const sanitizedSlug = sanitizeString(slug);
+
     await connectDB();
-    const blog = await Blog.findOneAndDelete({ slug });
+    const blog = await Blog.findOneAndDelete({ slug: sanitizedSlug });
 
     if (!blog) {
       return NextResponse.json({ error: 'Blog not found' }, { status: 404 });

@@ -1,11 +1,6 @@
 {
   "pages": {},
-  "app": {
-    "[project]/src/app/services/saas-products/page": [
-      "static/media/5c285b27cdda1fe8-s.p.a62025f2.woff2",
-      "static/media/38df7484fe560b25-s.p.60f15535.woff2"
-    ]
-  },
-  "appUsingSizeAdjust": true,
+  "app": {},
+  "appUsingSizeAdjust": false,
   "pagesUsingSizeAdjust": false
 }
