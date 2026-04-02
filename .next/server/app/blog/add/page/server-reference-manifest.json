@@ -9,9 +9,6 @@
           "filename": "src/actions/blogActions.ts"
         }
       },
-      "layer": {
-        "app/blog/add/page": "action-browser"
-      },
       "exportedName": "addBlog",
       "filename": "src/actions/blogActions.ts"
     },
@@ -24,9 +21,6 @@
           "filename": "src/actions/blogActions.ts"
         }
       },
-      "layer": {
-        "app/blog/add/page": "action-browser"
-      },
       "exportedName": "deleteBlog",
       "filename": "src/actions/blogActions.ts"
     },
@@ -38,9 +32,6 @@
           "exportedName": "updateBlog",
           "filename": "src/actions/blogActions.ts"
         }
-      },
-      "layer": {
-        "app/blog/add/page": "action-browser"
       },
       "exportedName": "updateBlog",
       "filename": "src/actions/blogActions.ts"

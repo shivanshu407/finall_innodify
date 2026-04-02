@@ -25,7 +25,7 @@ export function sanitizeString(input: string): string {
 }
 
 // Validate and sanitize blog data
-export function validateBlogInput(data: any): BlogInput {
+export function validateBlogInput(data: Record<string, unknown>): BlogInput {
   const errors: string[] = [];
 
   // Required fields validation
@@ -70,7 +70,7 @@ export function validateBlogInput(data: any): BlogInput {
     errors.push('Meta description must be a string less than 500 characters');
   }
 
-  if (data.keywords && (!Array.isArray(data.keywords) || data.keywords.some((k: any) => typeof k !== 'string'))) {
+  if (data.keywords && (!Array.isArray(data.keywords) || data.keywords.some((k: unknown) => typeof k !== 'string'))) {
     errors.push('Keywords must be an array of strings');
   }
 
@@ -84,29 +84,29 @@ export function validateBlogInput(data: any): BlogInput {
 
   // Return sanitized data
   return {
-    title: sanitizeString(data.title.trim()),
-    excerpt: sanitizeString(data.excerpt.trim()),
-    content: sanitizeString(data.content.trim()),
-    category: sanitizeString(data.category.trim()),
-    author: data.author ? sanitizeString(data.author.trim()) : undefined,
-    date: data.date,
-    readTime: data.readTime ? sanitizeString(data.readTime.trim()) : undefined,
-    image: data.image,
-    metaTitle: data.metaTitle ? sanitizeString(data.metaTitle.trim()) : undefined,
-    metaDescription: data.metaDescription ? sanitizeString(data.metaDescription.trim()) : undefined,
-    keywords: data.keywords || [],
-    canonicalUrl: data.canonicalUrl,
+    title: sanitizeString(String(data.title).trim()),
+    excerpt: sanitizeString(String(data.excerpt).trim()),
+    content: sanitizeString(String(data.content).trim()),
+    category: sanitizeString(String(data.category).trim()),
+    author: data.author ? sanitizeString(String(data.author).trim()) : undefined,
+    date: data.date as string | undefined,
+    readTime: data.readTime ? sanitizeString(String(data.readTime).trim()) : undefined,
+    image: data.image as string | undefined,
+    metaTitle: data.metaTitle ? sanitizeString(String(data.metaTitle).trim()) : undefined,
+    metaDescription: data.metaDescription ? sanitizeString(String(data.metaDescription).trim()) : undefined,
+    keywords: data.keywords as string[] || [],
+    canonicalUrl: data.canonicalUrl as string | undefined,
   };
 }
 
 // Sanitize update data to prevent NoSQL injection
-export function sanitizeUpdateData(data: any): Record<string, any> {
+export function sanitizeUpdateData(data: Record<string, unknown>): Record<string, unknown> {
   const allowedFields = [
     'title', 'excerpt', 'content', 'author', 'date', 'readTime',
     'category', 'image', 'metaTitle', 'metaDescription', 'keywords', 'canonicalUrl'
   ];
 
-  const sanitized: Record<string, any> = {};
+  const sanitized: Record<string, unknown> = {};
 
   for (const key of Object.keys(data)) {
     // Only allow whitelisted fields

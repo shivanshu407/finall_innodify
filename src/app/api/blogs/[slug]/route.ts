@@ -52,7 +52,7 @@ export async function PUT(
     const sanitizedBody = sanitizeUpdateData(body);
 
     // If title changed, regenerate slug
-    if (sanitizedBody.title && sanitizedBody.title !== blog.title) {
+    if (sanitizedBody.title && typeof sanitizedBody.title === 'string' && sanitizedBody.title !== blog.title) {
       sanitizedBody.slug = sanitizedBody.title
         .toLowerCase()
         .replace(/[^\w\s-]/g, '')
