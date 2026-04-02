@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import connectDB from '@/lib/db';
 import Blog from '@/models/Blog';
+import { validateBlogInput } from '@/lib/validation';
 
 export const dynamic = "force-dynamic";
 
@@ -19,14 +20,12 @@ export async function POST(request: Request) {
   try {
     await connectDB();
     const body = await request.json();
-    
-    const {
-      title, excerpt, content, author, date, readTime,
-      category, image, metaTitle, metaDescription, keywords, canonicalUrl,
-    } = body;
+
+    // Validate and sanitize input
+    const validatedData = validateBlogInput(body);
 
     // Auto-generate slug from title
-    const slug = title
+    const slug = validatedData.title
       .toLowerCase()
       .replace(/[^\w\s-]/g, '')
       .replace(/\s+/g, '-');
@@ -41,23 +40,23 @@ export async function POST(request: Request) {
     }
 
     const blog = await Blog.create({
-      title,
+      title: validatedData.title,
       slug,
-      excerpt,
-      content,
-      author: author || 'Innodify Admin',
-      date: date || new Date().toLocaleDateString('en-US', {
+      excerpt: validatedData.excerpt,
+      content: validatedData.content,
+      author: validatedData.author || 'Innodify Admin',
+      date: validatedData.date || new Date().toLocaleDateString('en-US', {
         month: 'short',
         day: 'numeric',
         year: 'numeric',
       }),
-      readTime: readTime || '5 min read',
-      category,
-      image: image || '',
-      metaTitle: metaTitle || '',
-      metaDescription: metaDescription || '',
-      keywords: keywords || [],
-      canonicalUrl: canonicalUrl || '',
+      readTime: validatedData.readTime || '5 min read',
+      category: validatedData.category,
+      image: validatedData.image || '',
+      metaTitle: validatedData.metaTitle || '',
+      metaDescription: validatedData.metaDescription || '',
+      keywords: validatedData.keywords || [],
+      canonicalUrl: validatedData.canonicalUrl || '',
     });
 
     return NextResponse.json({ success: true, blog }, { status: 201 });
