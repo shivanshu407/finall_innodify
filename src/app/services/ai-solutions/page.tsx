@@ -12,6 +12,12 @@ export const metadata: Metadata = {
         description: "From agentic AI to intelligent chatbots, we build custom AI solutions that automate, engage, and transform your operations.",
         url: "https://innodify.in/services/ai-solutions",
     },
+    twitter: {
+        card: "summary_large_image",
+        title: "AI Solutions | Custom AI Development | Innodify",
+        description: "Agentic AI, chatbots, machine learning, automation, and predictive analytics for growing businesses.",
+        images: ["/innodify-logo.svg"],
+    },
 };
 
 export default function AIServicesPage() {
