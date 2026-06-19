@@ -18,16 +18,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         return { title: "Post Not Found" };
     }
 
+    const title = post.metaTitle || post.title;
+    const description = post.metaDescription || post.excerpt;
+
     return {
-        title: post.metaTitle || post.title,
-        description: post.metaDescription || post.excerpt,
+        title,
+        description,
         alternates: { canonical: `/blog/${slug}` },
+        authors: post.author ? [{ name: post.author }] : undefined,
         openGraph: {
-            title: post.metaTitle || post.title,
-            description: post.metaDescription || post.excerpt,
+            title,
+            description,
             url: `https://innodify.in/blog/${slug}`,
             type: "article",
-            images: post.image ? [{ url: post.image }] : undefined,
+            publishedTime: post.date,
+            authors: post.author ? [post.author] : undefined,
+            tags: post.category ? [post.category] : undefined,
+            images: post.image ? [{ url: post.image, alt: post.title }] : undefined,
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: post.image ? [post.image] : ["/innodify-logo.svg"],
         },
     };
 }
@@ -59,6 +72,31 @@ export default async function BlogPostPage({ params }: Props) {
         })
         .slice(0, 3);
 
+    const articleJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: post.title,
+        description: post.metaDescription || post.excerpt,
+        image: post.image,
+        author: {
+            "@type": "Person",
+            name: post.author || "Innodify Team",
+        },
+        publisher: {
+            "@type": "Organization",
+            "@id": "https://innodify.in/#organization",
+            name: "Innodify",
+            logo: {
+                "@type": "ImageObject",
+                url: "https://innodify.in/innodify-logo.svg",
+            },
+        },
+        datePublished: post.date,
+        dateModified: post.date,
+        mainEntityOfPage: `https://innodify.in/blog/${slug}`,
+        articleSection: post.category,
+    };
+
     return (
         <>
             <BreadcrumbJsonLd
@@ -67,6 +105,10 @@ export default async function BlogPostPage({ params }: Props) {
                     { name: "Blog", url: "https://innodify.in/blog" },
                     { name: post?.title || "Post", url: `https://innodify.in/blog/${slug}` },
                 ]}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
             />
             <BlogPostContent post={post} recommendedPosts={recommendedPosts} />
         </>
