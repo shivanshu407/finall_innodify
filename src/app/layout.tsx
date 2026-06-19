@@ -5,6 +5,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { OrganizationJsonLd } from "@/components/JsonLd";
+import { LocalBusinessJsonLd } from "@/components/LocalBusinessJsonLd";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { ConsoleEasterEgg } from "@/components/ConsoleEasterEgg";
 
@@ -101,6 +102,7 @@ export default function RootLayout({
         className={`${dmSans.variable} ${libreBaskerville.variable} font-sans antialiased`}
       >
         <OrganizationJsonLd />
+        <LocalBusinessJsonLd />
         <ScrollProgress />
         <ConsoleEasterEgg />
         <div className="bg-dark min-h-screen flex flex-col">
