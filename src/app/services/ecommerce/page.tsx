@@ -12,6 +12,12 @@ export const metadata: Metadata = {
         description: "Custom eCommerce solutions with Shopify, Magento, and headless commerce.",
         url: "https://innodify.in/services/ecommerce",
     },
+    twitter: {
+        card: "summary_large_image",
+        title: "eCommerce Development | Innodify",
+        description: "Custom stores, migrations, headless commerce, and conversion improvements for online businesses.",
+        images: ["/innodify-logo.svg"],
+    },
 };
 
 export default function EcommerceServicesPage() {
