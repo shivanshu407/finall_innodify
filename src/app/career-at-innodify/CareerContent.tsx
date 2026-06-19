@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, MapPin, Clock, Briefcase, Heart, Zap, Users, Coffee, Laptop } from "lucide-react";
+import Link from "next/link";
 
 function CareersHero() {
     return (
@@ -86,9 +87,12 @@ function OpenPositionsSection() {
                                         <span className="flex items-center gap-1"><Clock size={14} />{position.type}</span>
                                     </div>
                                 </div>
-                                <a href="#" className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#0e1012] text-[#0e1012] font-semibold rounded-full hover:bg-[#0e1012] hover:text-white transition-colors text-sm">
+                                <Link
+                                    href="/contact-us"
+                                    className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#0e1012] text-[#0e1012] font-semibold rounded-full hover:bg-[#0e1012] hover:text-white transition-colors text-sm"
+                                >
                                     Apply Now <ArrowRight size={16} />
-                                </a>
+                                </Link>
                             </div>
                         </motion.div>
                     ))}
@@ -122,7 +126,7 @@ function ValuesSection() {
                         </div>
                         <div className="text-center">
                             <h3 className="text-xl font-semibold text-[#00adef]">Own Your Work</h3>
-                            <p className="mt-3 text-gray-400">We trust each team member to take ownership and deliver excellence.</p>
+                            <p class="mt-3 text-gray-400">We trust each team member to take ownership and deliver excellence.</p>
                         </div>
                     </div>
                 </motion.div>
