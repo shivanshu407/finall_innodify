@@ -12,6 +12,12 @@ export const metadata: Metadata = {
         description: "Cross-platform and native mobile apps for iOS and Android.",
         url: "https://innodify.in/services/mobile-apps",
     },
+    twitter: {
+        card: "summary_large_image",
+        title: "Mobile App Development | iOS & Android | Innodify",
+        description: "Native and cross-platform apps using React Native, Flutter, Swift, and Kotlin with app store launch support.",
+        images: ["/innodify-logo.svg"],
+    },
 };
 
 export default function MobileAppsServicesPage() {
