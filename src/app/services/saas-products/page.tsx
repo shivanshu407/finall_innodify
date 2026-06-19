@@ -12,6 +12,12 @@ export const metadata: Metadata = {
         description: "End-to-end SaaS product development from MVP to scale.",
         url: "https://innodify.in/services/saas-products",
     },
+    twitter: {
+        card: "summary_large_image",
+        title: "SaaS Product Development | Innodify",
+        description: "MVPs, SaaS architecture, cloud infrastructure, CI/CD, and scalable product engineering.",
+        images: ["/innodify-logo.svg"],
+    },
 };
 
 export default function SaaSServicesPage() {
