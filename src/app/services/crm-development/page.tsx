@@ -12,6 +12,12 @@ export const metadata: Metadata = {
         description: "Custom CRM solutions tailored to your sales, marketing, and customer management workflows.",
         url: "https://innodify.in/services/crm-development",
     },
+    twitter: {
+        card: "summary_large_image",
+        title: "CRM Development | Custom CRM Solutions | Innodify",
+        description: "AI-powered CRM systems for lead management, sales pipelines, automation, analytics, and retention.",
+        images: ["/innodify-logo.svg"],
+    },
 };
 
 export default function CRMServicesPage() {
