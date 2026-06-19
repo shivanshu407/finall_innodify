@@ -12,6 +12,12 @@ export const metadata: Metadata = {
         description: "Full-stack web application development with Next.js, React, and Node.js.",
         url: "https://innodify.in/services/web-development",
     },
+    twitter: {
+        card: "summary_large_image",
+        title: "Web Development Services | Innodify",
+        description: "Full-stack web apps, portals, PWAs, APIs, and high-performance websites built with modern frameworks.",
+        images: ["/innodify-logo.svg"],
+    },
 };
 
 export default function WebDevServicesPage() {
